@@ -86,6 +86,7 @@ sdkbox \
 android_native_app_glue \
 PluginAdMob \
 PluginChartboost \
+chartboost \
 PluginSdkboxPlay
 
 # _COCOS_HEADER_ANDROID_BEGIN
