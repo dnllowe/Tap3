@@ -143,7 +143,7 @@ bool MainMenu::init()
 		timeRemainingTextSize = 19;
 		bonusTextSize = 5;
 		scoreTextSize = 16;
-		topMenuButtonTextSize = 7;
+		topMenuButtonTextSize = 10;
 		baseTileMenuButtonTextSize = 12;
 		gameModeTextSize = 11;
 	}
