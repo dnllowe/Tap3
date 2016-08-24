@@ -126,7 +126,7 @@ void Tutorial_Matching::update(float dt)
 			timerText->GetLabel()->runAction(cocos2d::Sequence::create(
 				cocos2d::FadeOut::create(0.5),
 				cocos2d::CallFunc::create([this]() {
-				timerText->setString("Here, you need to match Shapes...");
+				timerText->setString("Here, you need to match 3 Shapes...");
 				timerText->Center();
 				timerText->setPositionY(headerTile->getPositionY() - 10);}),
 				cocos2d::FadeIn::create(0.5), NULL));
@@ -347,7 +347,7 @@ void Tutorial_Matching::update(float dt)
 				timerText->GetLabel()->runAction(cocos2d::Sequence::create(
 					cocos2d::FadeOut::create(0.5),
 					cocos2d::CallFunc::create([this]() {
-					timerText->setString("Good! Now, match colors...");
+					timerText->setString("Good! Now, match 3 colors...");
 					timerText->Center();
 					timerText->setPositionY(headerTile->getPositionY() - 10);}),
 					cocos2d::FadeIn::create(0.5), NULL));
@@ -366,7 +366,7 @@ void Tutorial_Matching::update(float dt)
 				timerText->GetLabel()->runAction(cocos2d::Sequence::create(
 					cocos2d::FadeOut::create(0.5),
 					cocos2d::CallFunc::create([this]() {
-					timerText->setString("Great! Finally, you need to learn to match the style...");
+					timerText->setString("Great! Finally, you need to learn to match the styles...");
 					timerText->Center();
 					timerText->setPositionY(headerTile->getPositionY() - 10);}),
 					cocos2d::FadeIn::create(0.5), NULL));
@@ -415,7 +415,7 @@ void Tutorial_Matching::update(float dt)
 			timerText->GetLabel()->runAction(cocos2d::Sequence::create(
 				cocos2d::FadeOut::create(0.5),
 				cocos2d::CallFunc::create([this]() {
-				timerText->setString("Try again. Match the tiles based on the rule above.");
+				timerText->setString("Try again. Match 3 tiles based on the rule above.");
 				timerText->Center();
 				timerText->setPositionY(headerTile->getPositionY() - 10);}),
 				cocos2d::FadeIn::create(0.5), NULL));
