@@ -163,7 +163,7 @@ public:
     /*!
      * initialize the plugin instance.
      */
-    static void init(const char* jsonconfig = 0);
+    static void init();
 
     /*!
      * show ad by specifying ad name.
