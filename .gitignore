@@ -45,3 +45,32 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+bin
+!cocos2d/cocos/platform/android/java/libs
+!cocos2d/cocos/platform/android/java/src
+cocos2d
+Files
+old sounds
+proj.android/.externalToolBuilders
+proj.android/.settings
+proj.android/assets
+proj.android/bin
+proj.android/gen
+proj.android/libs
+proj.android/obj
+proj.android-studio
+proj.ios_mac/mac
+proj.ios_mac/Tap3.xcodeproj
+proj.ios/mac/Tap3-mobile
+proj.linux
+proj.win8.1-universal
+!proj.win10/App/pch.h
+!proj.win10/App/pch.cpp
+proj.win10
+proj.win32
+!Resoures/sdkbox_config.json
+Resources
+Store-Listing
+new tile design direction.txt
+Tap-3-Trailer.txt
