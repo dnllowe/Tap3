@@ -59,7 +59,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 		if (!sdkbox::PluginSdkboxPlay::isSignedIn())
 			sdkbox::PluginSdkboxPlay::signin();
 		ATTEMPTED_SIGN_IN = true;
-
 	}
 #endif
 
