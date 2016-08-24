@@ -76,7 +76,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     //Volume needs to be lower for iOS to avoid clipping
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.2);
+    audio->SetMusicVolume(0.25);
+    audio->SetClipVolume(0.75);
 #endif
     // turn on display FPS
     director->setDisplayStats(false);
