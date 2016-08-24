@@ -46,6 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.gitignore
 bin
 !cocos2d/cocos/platform/android/java/libs
 !cocos2d/cocos/platform/android/java/src
@@ -74,3 +75,5 @@ Resources
 Store-Listing
 new tile design direction.txt
 Tap-3-Trailer.txt
+cocos2d/cocos/platform/android/java/gen/org/cocos2dx/lib/BuildConfig.java
+cocos2d/cocos/platform/android/java/libs/gps/gen/com/google/android/gms/BuildConfig.java
