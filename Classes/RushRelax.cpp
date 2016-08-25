@@ -55,13 +55,14 @@ bool RushRelax::init()
 	highestMatch = gameData->getIntegerForKey(best_match_rushrelax, 0);
 	highestScore = gameData->getIntegerForKey(best_score_rushrelax, 0);
 
-	//Begin game loop
+	///Add timers to vector so they can be controlled outside of class methods
 	timers.push_back(&sceneTimer);
 	timers.push_back(&matchTimer);
 	timers.push_back(&bonusTimer);
 	timers.push_back(&countdownTimer);
 	timers.push_back(&sequenceTimer);
 
+    //Begin Game Loop
 	scheduleUpdate();
 	return true;
 }
@@ -91,7 +92,7 @@ void RushRelax::update(float dt)
 	{
 		audio->PlayClip("low_tone");
 
-		//Check for new best score
+		//If user quits game early, best scores will still be recorded
 		CheckForNewBests();
 
 		//Go back to main menu
@@ -217,7 +218,7 @@ void RushRelax::update(float dt)
 			audio->PlayClip("low_tone");
 	}
 
-	//Cycle fade through all squares
+	//Cycle through all squares to check if user touched them
 	for (int iii = 0; iii < tiles.size(); iii++)
 	{
 		currentTile = iii;
@@ -270,7 +271,7 @@ void RushRelax::update(float dt)
 		}
 	}
 
-	//Check for match or not
+	//Check for match success or failure once 3 tiles have been touched
 	if (currentSelection == 4)
 	{
 		currentSelection = 1;
@@ -296,6 +297,7 @@ void RushRelax::update(float dt)
 
 			msLeft = matchTimer.GetElapsedTime();
 
+            //Award bonus points for making matches quickly
 			if (msLeft <= 1500)
 				previousSpeedBonus = 100;
 			else if (msLeft <= 2000)
@@ -349,7 +351,6 @@ void RushRelax::update(float dt)
 			if (matches == matchMilestone)
 			{
 				audio->PlayClip("triple_tone_high");
-				//milestoneTimeIncrease = matches / 3 * 1000;
 				generateBonus = true;
 				matchMilestone += nextMilestone;
 			}
@@ -398,7 +399,6 @@ void RushRelax::update(float dt)
 			{
 				audio->PlayClip("triple_tone_high");
 
-				//Begin game loop
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 			if (!gameData->getBoolForKey(ads_removed, false))
 					sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
@@ -509,8 +509,7 @@ void RushRelax::update(float dt)
 		else if (gameOver)
 		{
 			audio->PlayClip("double_tone_low");
-			
-            //Begin game loop
+
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             if(!gameData->getBoolForKey(ads_removed, false))
 				sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);

@@ -1562,7 +1562,6 @@ void Game::UseBonusEliminate()
 	if (excludedEliminateTiles.size() == tiles.size())
 	{
 		eliminateTile->runAction(cocos2d::FadeTo::create(0.25, 64));
-		//eliminateTile->ToggleTouch(false);
 		eliminateText->GetLabel()->runAction(cocos2d::FadeTo::create(0.25, 64));
 		return;
 	}
@@ -1576,7 +1575,6 @@ void Game::UseBonusEliminate()
 	if (excludedEliminateTiles.size() == tiles.size())
 	{
 		eliminateTile->runAction(cocos2d::FadeTo::create(0.25, 64));
-		//eliminateTile->ToggleTouch(false);
 		eliminateText->GetLabel()->runAction(cocos2d::FadeTo::create(0.25, 64));
 		return;
 	}
@@ -1601,7 +1599,6 @@ void Game::UseShowMatch()
 	{
 		showMatchTile->runAction(cocos2d::FadeTo::create(0.25, 64));
 		showMatchText->GetLabel()->runAction(cocos2d::FadeTo::create(0.25, 64));
-		//showMatchTile->ToggleTouch(false);
 	}
 
 	return;
@@ -1659,8 +1656,6 @@ void Game::UpdateScore()
 
 	if (displayedScore > finalScore)
 		displayedScore = finalScore;
-
-	//sprintf(sz, "%d", displayedScore);
 
 	if(matches == 1)
 		sprintf(sz, "%d pts   |   %d match", displayedScore, matches);
@@ -3698,58 +3693,7 @@ std::pair<cocos2d::Color3B, cocos2d::Color3B> Game::GetColorFromKey(std::pair<in
 		color.second = cocos2d::Color3B(255, 152, 7);
 		break;
 	}
-
-	/*
-	switch (colorInput.first)
-	{
-	case RED:
-		color.first = cocos2d::Color3B(255, 60, 60); //200, 100, 100
-		break;
-	case GREEN:
-		color.first = cocos2d::Color3B(12, 228, 53);
-		break;
-	case BLUE:
-		color.first = cocos2d::Color3B(55, 80, 255); //61, 93, 183
-		break;
-	case YELLOW:
-		color.first = cocos2d::Color3B(250, 245, 0);
-		break;
-	case PURPLE:
-		color.first = cocos2d::Color3B(189, 63, 190);
-		break;
-	case CYAN:
-		color.first = cocos2d::Color3B(73, 234, 234);
-		break;
-	case ORANGE:
-		color.first = cocos2d::Color3B(255, 160, 5);
-		break;
-	}
-
-	switch (colorInput.second)
-	{
-	case RED:
-		color.second = cocos2d::Color3B(255, 60, 60); //200, 100, 100
-		break;
-	case GREEN:
-		color.second = cocos2d::Color3B(12, 228, 53);
-		break;
-	case BLUE:
-		color.second = cocos2d::Color3B(55, 80, 255); //61, 93, 183
-		break;
-	case YELLOW:
-		color.second = cocos2d::Color3B(250, 245, 0);
-		break;
-	case PURPLE:
-		color.second = cocos2d::Color3B(189, 63, 190);
-		break;
-	case CYAN:
-		color.second = cocos2d::Color3B(73, 234, 234);
-		break;
-	case ORANGE:
-		color.second = cocos2d::Color3B(255, 160, 5);
-		break;
-	}
-	*/
+    
 	return color;
 }
 
@@ -3760,9 +3704,6 @@ std::pair<int, int> Game::DecodeColor(std::pair<cocos2d::Color3B, cocos2d::Color
 
 void Game::Reset()
 {
-	//Stop music
-//	audio->StopMusic();
-
 	yesMenuButtonOn = false;
 	notReallyMenuButtonOn = false;
 	sureMenuButtonOn = false;

@@ -60,15 +60,15 @@ bool Classic::init()
 	highestMatch = gameData->getIntegerForKey(best_match_classic, 0);
 	highestScore = gameData->getIntegerForKey(best_score_classic, 0);
 
-	//Begin game loop
+	//Add timers to vector so they can be controlled outside of class methods
 	timers.push_back(&sceneTimer);
 	timers.push_back(&countdownTimer);
 	timers.push_back(&bonusTimer);
 	timers.push_back(&sequenceTimer);
-	msLeft = timelimit;
     
     warningTime = 1000;
     
+    //Begin Game Loop
 	scheduleUpdate();
 	return true;
 }
@@ -98,7 +98,7 @@ void Classic::update(float dt)
 	{
 		audio->PlayClip("low_tone");
 
-		//Check for new best score
+		//If user quits game early, best scores will still be recorded
 		CheckForNewBests();
 
 		//Go back to main menu
@@ -224,7 +224,7 @@ void Classic::update(float dt)
 			audio->PlayClip("low_tone");
 	}
 
-	//Cycle fade through all squares
+	//Cycle through all squares to check if user touched them
 	for (int iii = 0; iii < tiles.size(); iii++)
 	{
 		currentTile = iii;
@@ -277,7 +277,7 @@ void Classic::update(float dt)
 		}
 	}
 
-	//Check for match or not
+	//Check for match success or failure once 3 tiles have been touched
 	if (currentSelection == 4)
 	{
 		currentSelection = 1;
@@ -386,7 +386,6 @@ void Classic::update(float dt)
 			audio->PlayClip("double_tone_low");
 			bonusTime = 0;
 
-            //Begin game loop
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             if(!gameData->getBoolForKey(ads_removed, false))
 				sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
@@ -990,7 +989,6 @@ void Classic::UpdateTimer()
 			currentSelection = 1;
 			audio->PlayClip("double_tone_low");
 
-			//ConvertRemainingBonusItemsToPoints();
 			if (matches == 1)
 				sprintf(sz, "You Got 1 Match!");
 			else
