@@ -47,6 +47,7 @@ protected:
 	bool chosePractice = false;
 	bool choseMemory = false;
 
+    int scoreDisplayLength = 6500; //How long to display each best score
 	int highestMatchCountdown = 0; //Highest match player has ever reached on Easy
 	int highestScoreCountdown = 0; //Highest score player has ever reached Easy
 	int highestMatchClassic = 0; //Highest match player has ever reached on Normal

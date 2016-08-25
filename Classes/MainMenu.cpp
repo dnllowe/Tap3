@@ -856,10 +856,6 @@ void MainMenu::update(float dt)
 		sceneTimer.SetMark(0);
 	}
 
-	//Randomly spawn tiles ever 5 seconds
-	if (!sceneTimer.IsMarkSet() && sceneTimer.GetElapsedTime() >= 4000 && mode)
-        sceneTimer.SetMark(1000);
-
 	if (sceneTimer.IsMarkSet() && sceneTimer.GetElapsedTime() >= sceneTimer.GetMark())
 	{
 		if (displayingClassic && !selectingGameMode)
@@ -1003,7 +999,9 @@ void MainMenu::update(float dt)
 		for (int iii = 0; iii < tiles.size(); iii++)
 			tiles[iii]->ToggleTouch(false);
 		sceneTimer.Restart();
-		sceneTimer.ResetMark();
+		
+        //Display next score after 2 seconds
+        sceneTimer.SetMark(scoreDisplayLength);
 	}
 
 	if (retry->GetConfirmedSelection() == 0 || WasTouched())
@@ -1113,9 +1111,6 @@ void MainMenu::update(float dt)
         this->ToggleTouch(false);
 
 		nrgFunctions::Center(scoreText, bestScoreTile);
-
-		for (int iii = 0; iii < tiles.size(); iii++)
-			tiles[iii]->DismissTile();
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		if (!gameData->getBoolForKey(ads_removed, false))
@@ -1386,18 +1381,8 @@ void MainMenu::RunIntro()
 				cocos2d::ScaleBy::create(2, 0.8),
 				cocos2d::ScaleBy::create(2, 1.25), NULL)));
 		ToggleTouch(true);
-        sceneTimer.Restart();/*
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-		sdkbox::PluginSdkboxPlay::init();
-		//Only attempt to sign in once, only Chartboost once
-		if (!ATTEMPTED_SIGN_IN)
-		{
-			if (!sdkbox::PluginSdkboxPlay::isSignedIn())
-				sdkbox::PluginSdkboxPlay::signin();
-			ATTEMPTED_SIGN_IN = true;
-		}
-#endif
-*/
+        sceneTimer.Restart();
+        sceneTimer.SetMark(scoreDisplayLength);
 	}), 
 	NULL));
 	return;
