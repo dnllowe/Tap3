@@ -852,14 +852,27 @@ void Tutorial_Bonus::onEnter()
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	sdkbox::PluginAdMob::hide("home");
 #endif
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	audio->SetMusicVolume(0.35);
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	audio->SetMusicVolume(0.05);
+#endif
 	Game::onEnter();
 	return;
 }
 
 void Tutorial_Bonus::onExit()
 {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	audio->SetMusicVolume(1);
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	audio->SetMusicVolume(0.10);
+#endif
+
 	Game::onExit();
 	return;
 }
