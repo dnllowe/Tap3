@@ -530,9 +530,9 @@ void MainMenu::update(float dt)
 			cocos2d::CallFunc::create([this]()
 		{
 			if (highestMatchCountdown != 1)
-				sprintf(sz, "%d points   |   %d matches", highestScoreClassic, highestMatchCountdown);
+				sprintf(sz, "%d points   |   %d matches", highestScoreCountdown, highestMatchCountdown);
 			else
-				sprintf(sz, "%d points   |   %d match", highestScoreClassic, highestMatchCountdown);
+				sprintf(sz, "%d points   |   %d match", highestScoreCountdown, highestMatchCountdown);
 
 			pointsText->setString(sz);
 			pointsText->Center();
