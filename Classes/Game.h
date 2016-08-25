@@ -258,7 +258,8 @@ protected:
 	int finalScore = 0; //Calculated final score based on matches, time remaining, and earned bonsues not used
 	int displayedScore = 0; //Score to show on game over screen as it counts up to final score
 	int pattern = 0; //Which intro pattern tiles will restore with
-
+    int lastBonus = -1; //Last bonus item player received. Use to prevent receiving the same item twice
+    
 	//Game objects / elements
 	BaseTile* baseTile = NULL; //Base tile for game
 	nrgButton* backButton = NULL; //Button to go back to previous mode/screen

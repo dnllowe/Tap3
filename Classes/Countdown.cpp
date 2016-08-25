@@ -1097,18 +1097,6 @@ void Countdown::UpdateTimer()
 			timerText->SetBottom(timeRemainingBottomPosition);
 
 			//Disable all powerups
-			if (bonusTimePlusLeft > 0)
-			{
-				timePlusTile->setOpacity(64);
-				timePlusText->GetLabel()->setOpacity(64);
-			}
-
-			if (bonusNewCardLeft > 0)
-			{
-				newCardTile->setOpacity(64);
-				newCardText->GetLabel()->setOpacity(64);
-			}
-
 			if (bonusEliminateLeft > 0)
 			{
 				eliminateTile->setOpacity(64);
@@ -1127,7 +1115,18 @@ void Countdown::UpdateTimer()
 		{
 			gameOver = true;
 
-			restoreTiles = true;
+            if (bonusTimePlusLeft > 0)
+            {
+                timePlusTile->setOpacity(64);
+                timePlusText->GetLabel()->setOpacity(64);
+            }
+            
+            if (bonusNewCardLeft > 0)
+            {
+                newCardTile->setOpacity(64);
+                newCardText->GetLabel()->setOpacity(64);
+            }
+            restoreTiles = true;
 			currentSelection = 1;
 			audio->PlayClip("double_tone_low");
 
@@ -1997,7 +1996,7 @@ void Countdown::SetMatchParameters(int excludedMatchCriteria, bool blind)
 		//Random match criteria after warm up rounds, or keep the same when rerandomizing
 		if (excludedMatchCriteria >= 0)
 		{ 
-			matchCriteria = nrgFunctions::GetRandom(COLORS, STYLES, true, excludedMatchCriteria);
+			matchCriteria = nrgFunctions::GetRandom(COLORS, STYLES, excludedMatchCriteria);
 			excludedShapes.erase(HEXAGON);
 			excludedStyles.erase(BLINDS);
 		}

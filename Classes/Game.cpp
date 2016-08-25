@@ -857,7 +857,8 @@ void Game::GenerateBonus()
 	else
 		bonusMin = TIME;
 
-	randomizedBonus = nrgFunctions::GetRandom(bonusMin, bonusMax);
+	randomizedBonus = nrgFunctions::GetRandom(bonusMin, bonusMax, lastBonus);
+    lastBonus = randomizedBonus;
 	generateQuestionMark->setVisible(true);
 	baseTileText->setString("BONUS EARNED!");
 	baseTileText->GetLabel()->setVisible(true);
@@ -3631,6 +3632,12 @@ void Game::ReRandomizeTiles()
 
 	warningTime = 3000;
 
+    if(mode == CLASSIC)
+    {
+        countdownTimer.Restart();
+        warningTime = 1000;
+    }
+    
 	return;
 }
 

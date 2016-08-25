@@ -961,12 +961,6 @@ void Classic::UpdateTimer()
 			timerText->SetBottom(timeRemainingBottomPosition);
 
 			//Disable all powerups
-			if (bonusNewCardLeft > 0)
-			{
-				newCardTile->setOpacity(64);
-				newCardText->GetLabel()->setOpacity(64);
-			}
-
 			if (bonusEliminateLeft > 0)
 			{
 				eliminateTile->setOpacity(64);
@@ -986,7 +980,13 @@ void Classic::UpdateTimer()
 			gameOver = true;
 			bonusTime = 0;
 
-			restoreTiles = true;
+            if (bonusNewCardLeft > 0)
+            {
+                newCardTile->setOpacity(64);
+                newCardText->GetLabel()->setOpacity(64);
+            }
+
+            restoreTiles = true;
 			currentSelection = 1;
 			audio->PlayClip("double_tone_low");
 

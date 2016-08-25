@@ -1612,7 +1612,7 @@ void RushRelax::SetMatchParameters(int excludedMatchCriteria, bool blind)
 		//Random match criteria after warm up rounds, or keep the same when rerandomizing
 		if (excludedMatchCriteria >= 0)
 		{
-			matchCriteria = nrgFunctions::GetRandom(COLORS, STYLES, true, excludedMatchCriteria);
+			matchCriteria = nrgFunctions::GetRandom(COLORS, STYLES, excludedMatchCriteria);
 			excludedShapes.erase(HEXAGON);
 			excludedStyles.erase(BLINDS);
 		}
