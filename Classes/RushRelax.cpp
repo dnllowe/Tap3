@@ -88,6 +88,11 @@ void RushRelax::update(float dt)
         showingAd = false;
     }
     
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    if(!gameOver && sdkbox::PluginChartboost::isAnyViewVisible())
+        sdkbox::PluginChartboost::closeImpression();
+#endif
+    
 	if (backButton->WasPressed())
 	{
 		audio->PlayClip("low_tone");
