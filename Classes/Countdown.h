@@ -76,7 +76,7 @@ protected:
 	bool timerReached90 = false;
 	bool remainingTimeAbove20 = false;
     bool msWentBelow20 = false;
-	int matchTimeIncrease = 4000; //Amount to increase time for getting match
+	int matchTimeIncrease = 3000; //Amount to increase time for getting match
 	int milestoneTimeIncrease = 0; //Amount to increase time for reaching milestone
 
 	bool earnedSpeedDemon1 = false;

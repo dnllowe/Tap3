@@ -59,11 +59,11 @@ public:
 protected:
 	
 	Classic();
-	int timelimit = 3250;
-	int initialTimelimit = 3250;
+	int timelimit = 3000;
+	int initialTimelimit = 3000;
 	int round = 0;
 	int bonusTime = 0;
-    std::string startTimeString = "3.25";
+    std::string startTimeString = "3.00";
 	nrgTimer speedTimer_5_matches;
 	nrgTimer speedTimer_10_matches;
 	nrgTimer speedTimer_20_matches;

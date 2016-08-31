@@ -39,7 +39,7 @@ bool Countdown::init()
 	director->setClearColor(cocos2d::Color4F(1, 1, 1, 1));
 
 	//Game Mode Specific variables
-	startingMs = 30000;
+	startingMs = 25000;
 	matchMilestone = 5;
 	nextMilestone = 5;
 	gameStarted = true;
