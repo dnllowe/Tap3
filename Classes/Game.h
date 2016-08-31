@@ -14,7 +14,7 @@ public:
 	virtual void InitGameAssets();
 
 	virtual void DisplaySequence();
-	
+    
 	virtual void CheckSequence();
 
     virtual void DisplayGameOver();
