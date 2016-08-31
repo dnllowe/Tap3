@@ -225,7 +225,7 @@ protected:
 	bool gameStarted = false;
 	bool gameWon = false; //Whether play reached match 100
 	static bool forcedGameOver;
-	bool gameOver; //Whether player made incorrect match or time ran out
+	bool gameOver = false; //Whether player made incorrect match or time ran out
 	bool matchMade = false; //Whether player made match on most recent turn
 	static bool requestReview;
 	static int mode;

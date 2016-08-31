@@ -445,6 +445,14 @@ void Countdown::update(float dt)
 		{
 			audio->PlayClip("double_tone_low");
             
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            audio->SetMusicVolume(0.35);
+#endif
+            
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            audio->SetMusicVolume(0.1);
+#endif
+            
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             if(!gameData->getBoolForKey(ads_removed, false))
                 sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
@@ -839,7 +847,7 @@ void Countdown::update(float dt)
 		}
 	}
 
-	//Restart game from 0 matches (Retry or starting after backing out to main menu)
+	//Restart game from 0 matches
 	else if (!displayGameOver && achievementsUnlocked == 0 && retry->GetConfirmedSelection() == 0)
 	{
 		//Make sure to close chartboost ad so it doesn't interrupt gameplay
@@ -851,7 +859,15 @@ void Countdown::update(float dt)
 		gameOver = false;
 		gameWon = false;
 
-		earnedSpeedDemon1 = false;
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        audio->SetMusicVolume(1);
+#endif
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        audio->SetMusicVolume(0.20);
+#endif
+        
+        earnedSpeedDemon1 = false;
 		earnedSpeedDemon2 = false;
 		earnedSpeedDemon3 = false;
 
@@ -1200,6 +1216,14 @@ void Countdown::UpdateTimer()
 		{
 			gameOver = true;
             
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            audio->SetMusicVolume(0.35);
+#endif
+            
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            audio->SetMusicVolume(0.1);
+#endif
+    
             if (bonusTimePlusLeft > 0)
             {
                 timePlusTile->setOpacity(64);

@@ -256,7 +256,7 @@ void Options::onEnter()
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.05);
+    audio->SetMusicVolume(0.1);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -284,7 +284,7 @@ void Options::onExit()
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.10);
+    audio->SetMusicVolume(0.20);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

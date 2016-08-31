@@ -484,6 +484,14 @@ void MemoryMode::update(float dt)
 		{
 			audio->PlayClip("double_tone_low");
             
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            audio->SetMusicVolume(0.35);
+#endif
+            
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            audio->SetMusicVolume(0.1);
+#endif
+            
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             if(!gameData->getBoolForKey(ads_removed, false))
 				sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
@@ -591,6 +599,14 @@ void MemoryMode::update(float dt)
 	if (forcedGameOver)
 	{
 		audio->PlayClip("double_tone_low");
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        audio->SetMusicVolume(0.35);
+#endif
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        audio->SetMusicVolume(0.1);
+#endif
         
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		if (!gameData->getBoolForKey(ads_removed, false))
@@ -1104,7 +1120,7 @@ void MemoryMode::update(float dt)
 		}
 	}
 
-	//Restart game from 0 matches (Retry or starting after backing out to main menu)
+	//Restart game from 0 matches
 	else if (!displayGameOver && achievementsUnlocked == 0 && retry->GetConfirmedSelection() == 0)
 	{
 		//Make sure to close chartboost ad so it doesn't interrupt gameplay
@@ -1113,7 +1129,15 @@ void MemoryMode::update(float dt)
 #endif
 		audio->PlayClip("triple_tone_high");
 
-		retry->ChangeMenu("Ready!", 0, false);
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        audio->SetMusicVolume(1);
+#endif
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        audio->SetMusicVolume(0.20);
+#endif
+        
+        retry->ChangeMenu("Ready!", 0, false);
 		retry->Center();
 		retry->SetBottom(pointsTextBottomPosition - readyOffset);
 	

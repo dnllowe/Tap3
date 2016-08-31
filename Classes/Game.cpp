@@ -4675,13 +4675,22 @@ void Game::onEnter()
     if (gameData->getBoolForKey(music_on, true) && !CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
         audio->PlayMusic("Tap3-Theme", true);
     
+    
 	if (gameOver && mode != -1)
 	{
 		retry->ToggleTouch(true);
 		optionsButton->ToggleTouch(true);
 		highScoresButton->ToggleTouch(true);
-		buyBonusItemsButton->ToggleTouch(true);	
-	}
+		buyBonusItemsButton->ToggleTouch(true);
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        audio->SetMusicVolume(0.35);
+#endif
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        audio->SetMusicVolume(0.1);
+#endif
+    }
 
 	if (yesMenuButtonOn || notReallyMenuButtonOn || okMenuButtonOn || sureMenuButtonOn || noThanksMenuButtonOn)
 	{
