@@ -799,6 +799,44 @@ void Game::CheckSequence()
 	return;
 }
 
+void Game::DisplayGameOver()
+{
+    if(testing && testingReview)
+        requestReview = true;
+    
+    for (int iii = 0; iii < tiles.size(); iii++)
+    {
+        tiles[iii]->SetFade(0);
+        tiles[iii]->DismissTile();
+    }
+   
+    if(matches < 100)
+        baseTileText->setString("GAME OVER!\n\n\nOOPS!\nYou didn't tap the right tiles.");
+    else
+        baseTileText->setString("GOOD JOB!\n\n\nOver 100 matches is pretty good. Want to try again?");
+    baseTileText->GetLabel()->setVisible(true);
+    baseTileText->Center();
+    baseTileText->setPositionY(baseTile->getPositionY() + baseTile->GetHeight() * 0.425);
+    baseTileText->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
+    
+    //If there are any achievements, wait until they're done (Continue) to ask to see matching tiles
+    if(achievementsUnlocked > 0 || requestReview)
+        sprintf(sz, "Continue");
+    else
+        sprintf(sz, "See Matching Tiles");
+    
+    retry->ChangeMenu(sz, 0, false);
+    retry->Center();
+    retry->SetBottom(retryBottomPosition);
+    retry->ToggleOn(true);
+    retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+        cocos2d::Sequence::create(
+            cocos2d::DelayTime::create(0.125),
+            cocos2d::FadeTo::create(0.5, 64),
+            cocos2d::FadeTo::create(0.5, 255),
+            cocos2d::DelayTime::create(0.125), NULL)));
+    return;
+}
 void Game::GenerateBonus()
 {
     
@@ -3926,7 +3964,7 @@ void Game::Reset()
 		highestMatch = gameData->getIntegerForKey(best_match_classic, 0);
 		highestScore = gameData->getIntegerForKey(best_score_classic, 0);
 
-		sprintf(sz, "3.25");
+		sprintf(sz, "3.00");
 		timerText->setString(sz);
 		timerText->Center();
 		timerText->SetBottom(timeRemainingBottomPosition);
@@ -3937,7 +3975,7 @@ void Game::Reset()
 		highestMatch = gameData->getIntegerForKey(best_match_countdown, 0);
 		highestScore = gameData->getIntegerForKey(best_score_countdown, 0);
 
-		timerText->setString("30.00");
+		timerText->setString("25.00");
 		timerText->Center();
 		timerText->SetBottom(timeRemainingBottomPosition);
 		timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
@@ -4129,7 +4167,7 @@ void Game::RequestReview()
 
 void Game::CheckForReview()
 {
-    //Display review request instead of final match
+    //Display review request instead of final match (only displays after achievements are dislpayed)
     if (displayReviewRequest)
     {
         for (int iii = 0; iii < tiles.size(); iii++)
@@ -4187,6 +4225,7 @@ void Game::CheckForReview()
         displayReviewRequest = false;
         testingReview = false;
 		allowRerandomize = false;
+        showingReviewRequest = true;
     }
     
 	//Enjoying Tap 3
@@ -4290,6 +4329,22 @@ void Game::CheckForReview()
         restoreTiles = true;
 		allowRerandomize = true;
 		sceneTimer.SetMark(0);
+        showingReviewRequest = false;
+        
+        if(matches >= 100)
+            retry->ChangeMenu("Play Again", 0, false);
+        else
+            retry->ChangeMenu("Try Again", 0, false);
+        
+        retry->Center();
+            retry->SetBottom(retryBottomPosition);
+            retry->ToggleOn(true);
+            retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+                cocos2d::Sequence::create(
+                    cocos2d::DelayTime::create(0.125),
+                    cocos2d::FadeTo::create(0.5, 64),
+                    cocos2d::FadeTo::create(0.5, 255),
+                    cocos2d::DelayTime::create(0.125), NULL)));
     }
     
 	//Will rate Tap 3
@@ -4319,9 +4374,32 @@ void Game::CheckForReview()
         restoreTiles = true;
 		allowRerandomize = true;
 		sceneTimer.SetMark(0);
-
+        showingReviewRequest = false;
+        
+        if(matches >= 100)
+            retry->ChangeMenu("Play Again", 0, false);
+        else
+            retry->ChangeMenu("Try Again", 0, false);
+        
+        retry->Center();
+            retry->SetBottom(retryBottomPosition);
+            retry->ToggleOn(true);
+            retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+                cocos2d::Sequence::create(
+                    cocos2d::DelayTime::create(0.125),
+                    cocos2d::FadeTo::create(0.5, 64),
+                    cocos2d::FadeTo::create(0.5, 255),
+                    cocos2d::DelayTime::create(0.125), NULL)));
+        
         //GO TO REVIEW APP URL
-		if (cocos2d::Application::getInstance()->openURL("http://ooo-games.com"))
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        sprintf(sz, "market://details?id=com.OutOfOrbitGames.Tap3");
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        sprintf(sz, "itms-app://itunes.apple.com/app/id1129999627");
+#endif
+		if (cocos2d::Application::getInstance()->openURL(sz))
 			gameData->setBoolForKey(app_rated, true);
     }
     
@@ -4352,7 +4430,23 @@ void Game::CheckForReview()
         restoreTiles = true;
 		allowRerandomize = true;
 		sceneTimer.SetMark(0);
-
+        showingReviewRequest = false;
+        
+        if(matches >= 100)
+            retry->ChangeMenu("Play Again", 0, false);
+        else
+            retry->ChangeMenu("Try Again", 0, false);
+        
+        retry->Center();
+            retry->SetBottom(retryBottomPosition);
+            retry->ToggleOn(true);
+            retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+                cocos2d::Sequence::create(
+                    cocos2d::DelayTime::create(0.125),
+                    cocos2d::FadeTo::create(0.5, 64),
+                    cocos2d::FadeTo::create(0.5, 255),
+                    cocos2d::DelayTime::create(0.125), NULL)));
+        
         //EMAIL SUPPORT WITH FEEDBACK
 		cocos2d::Application::getInstance()->openURL("mailto:support@ooo-games.com?subject=Tap 3 Feedback&body=Hi. I want to provide the following feedback for Tap 3:");
     }

@@ -17,6 +17,8 @@ public:
 	
 	virtual void CheckSequence();
 
+    virtual void DisplayGameOver();
+    
 	virtual void GenerateBonus();
 
 	virtual void DisplayBonus();
@@ -242,6 +244,7 @@ protected:
 
 	int baseTileTextSize; //Varies based on platform
 	bool displayReviewRequest = false; //Whether to turn on review request forms for display
+    bool showingReviewRequest = false; //Whether review request forms are still displaying
 	int earnedTimePlusBonuses = 0; //How many time plus bonus items were earned during the match
 	int earnedEliminateBonuses = 0; //How many eliminate bonus items were earned during the match
 	int earnedShowMatchBonuses = 0; //How many show match bonus items were earned during the match
@@ -285,7 +288,7 @@ protected:
 	bool sureMenuButtonOn = false;
 	bool okMenuButtonOn = false;
 	bool noThanksMenuButtonOn = false;
-
+    bool displayGameOver = false;
 	bool generateBonus = false; //True while bonus items is randomizing
 	bool confirmingBonus = false; //Play must confirm getting bonus or exchanging for points before continuing game
 	nrgText* generateQuestionMark = NULL;

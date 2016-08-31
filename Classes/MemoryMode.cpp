@@ -64,6 +64,14 @@ bool MemoryMode::init()
 	retry->ToggleOn(false);
 	retry->Center();
 	retry->SetBottom(pointsTextBottomPosition - readyOffset);
+
+    retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+        cocos2d::Sequence::create(
+            cocos2d::DelayTime::create(0.125),
+            cocos2d::FadeTo::create(0.5, 64),
+            cocos2d::FadeTo::create(0.5, 255),
+            cocos2d::DelayTime::create(0.125), NULL)));
+    
 	pointsText->GetLabel()->setOpacity(0);
 
     //Add timers to vector so they can be controlled outside of class methods
@@ -475,7 +483,7 @@ void MemoryMode::update(float dt)
 		else if (gameOver)
 		{
 			audio->PlayClip("double_tone_low");
-
+            
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             if(!gameData->getBoolForKey(ads_removed, false))
 				sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
@@ -523,34 +531,6 @@ void MemoryMode::update(float dt)
 			CheckForAchievements();
 			currentSelection = 1;
 
-			if (achievementsUnlocked > 0)
-			{
-				achievementUnlockedHeader->GetLabel()->setVisible(true);
-				achievementUnlockedHeader->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
-				retry->ChangeMenu("Continue", 0, false);
-				for (int iii = 0; iii < tiles.size(); iii++)
-					tiles[iii]->DismissTile();
-			}
-
-			else
-			{
-                if(matches >= 100)
-                    retry->ChangeMenu("Play Again", 0, false);
-                else
-                    retry->ChangeMenu("Try Again", 0, false);
-				restoreTiles = true;
-			}
-            
-			retry->Center();
-			retry->SetBottom(retryBottomPosition);
-			retry->ToggleOn(true);
-			retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
-				cocos2d::Sequence::create(
-					cocos2d::DelayTime::create(0.125),
-					cocos2d::FadeTo::create(0.5, 64),
-					cocos2d::FadeTo::create(0.5, 255),
-					cocos2d::DelayTime::create(0.125), NULL)));
-
 			//Turn menu buttons back on
 			optionsButton->setVisible(true);
 			highScoresButton->setVisible(true);
@@ -590,6 +570,10 @@ void MemoryMode::update(float dt)
 				gameData->setIntegerForKey(times_opened_today, 0);
 				gameData->setIntegerForKey(times_played_today, 0);
 			}
+            
+            //Need to know if any achievements were unlocked or if review request is true before calling
+            displayGameOver = true;
+            DisplayGameOver();
 		}
 	}
 
@@ -607,7 +591,7 @@ void MemoryMode::update(float dt)
 	if (forcedGameOver)
 	{
 		audio->PlayClip("double_tone_low");
-
+        
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		if (!gameData->getBoolForKey(ads_removed, false))
 			sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
@@ -664,34 +648,6 @@ void MemoryMode::update(float dt)
 		CheckForAchievements();
 		currentSelection = 1;
 
-		if (achievementsUnlocked > 0)
-		{
-			achievementUnlockedHeader->GetLabel()->setVisible(true);
-			achievementUnlockedHeader->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
-			retry->ChangeMenu("Continue", 0, false);
-			for (int iii = 0; iii < tiles.size(); iii++)
-				tiles[iii]->DismissTile();
-		}
-
-		else
-		{
-            if(matches >= 100)
-                retry->ChangeMenu("Play Again", 0, false);
-            else
-                retry->ChangeMenu("Try Again", 0, false);
-			restoreTiles = true;
-		}
-        
-		retry->Center();
-		retry->SetBottom(retryBottomPosition);
-		retry->ToggleOn(true);
-		retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
-			cocos2d::Sequence::create(
-				cocos2d::DelayTime::create(0.125),
-				cocos2d::FadeTo::create(0.5, 64),
-				cocos2d::FadeTo::create(0.5, 255),
-				cocos2d::DelayTime::create(0.125), NULL)));
-
 		//Turn menu buttons back on
 		optionsButton->setVisible(true);
 		highScoresButton->setVisible(true);
@@ -734,6 +690,10 @@ void MemoryMode::update(float dt)
 
 		forcedGameOver = false;
 		gameOver = true;
+        
+        //Need to know if any achievements were unlocked or if review request is true before calling
+        displayGameOver = true;
+        DisplayGameOver();
 	}
 	
 	//Dismiss all tiles
@@ -974,56 +934,163 @@ void MemoryMode::update(float dt)
             displayReviewRequest = true;
 	}
 
-    //Check if app should ask user for review
-    CheckForReview();
+    //Player chooses to advance clock and match tiles now
+    if (retry->GetItem(0)->getString() == "Ready!" && retry->GetConfirmedSelection() == 0)
+    {
+        audio->PlayClip("double_tone_higher");
+        hideTiles = true;
+        retry->ToggleOn(false);
+        pointsText->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
+        sceneTimer.SetMark(0);
+        timerText->GetLabel()->runAction(cocos2d::FadeOut::create(0.5));
+        msLeft = 0;
+        warningTime = -1000;
+        
+        //Only reveal match type after shapes disappear
+        if (matchCriteriaText->GetLabel()->getString() == "Memorize...")
+            UpdateHeaderText(matchCriteria);
+    }
 
-	if (achievementsUnlocked > 0)
-	{
-		for (int iii = 0; iii < tiles.size(); iii++)
-		{
-			tiles[iii]->SetFade(0);
-			tiles[iii]->DismissTile();
-		}
+    if(displayGameOver && retry->GetConfirmedSelection() == 0)
+    {
+        audio->PlayClip("double_tone_higher");
+        displayGameOver = false;
+        baseTileText->GetLabel()->setVisible(false);
+        bool menuChanged = false;
+        
+        if (achievementsUnlocked > 0)
+        {
+            achievementUnlockedHeader->GetLabel()->setVisible(true);
+            achievementUnlockedHeader->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
+            
+            if(achievementsUnlocked == 1 && !requestReview)
+            {
+                retry->ChangeMenu("See Matching Tiles", 0, false);
+                menuChanged = true;
+            }
+        }
+        
+        else
+        {
+            if(!requestReview)
+            {
+                if(matches >= 100)
+                    retry->ChangeMenu("Play Again", 0, false);
+                else
+                    retry->ChangeMenu("Try Again", 0, false);
+                
+                restoreTiles = true;
+            }
+            
+            else
+                retry->ChangeMenu("See Matching Tiles", 0, false);
+            
+            menuChanged = true;
+        }
+        
+        if(menuChanged)
+        {
+            retry->Center();
+            retry->SetBottom(retryBottomPosition);
+            retry->ToggleOn(true);
+            retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+                cocos2d::Sequence::create(
+                    cocos2d::DelayTime::create(0.125),
+                    cocos2d::FadeTo::create(0.5, 64),
+                    cocos2d::FadeTo::create(0.5, 255),
+                    cocos2d::DelayTime::create(0.125), NULL)));
+        }
+    }
+    
+    //Check to see if app should ask user for review
+    if(!displayGameOver)
+        CheckForReview();
 
+    //Close review request forms if user presses continue or see matching tiles
+    if(showingReviewRequest && retry->GetConfirmedSelection() == 0)
+    {
+        audio->PlayClip("double_tone_higher");
+        
+        baseTileText->GetLabel()->stopAllActions();
+        menuLeft->stopAllActions();
+        menuRight->stopAllActions();
+        leftMenuText->GetLabel()->stopAllActions();
+        rightMenuText->GetLabel()->stopAllActions();
+        
+        baseTileText->GetLabel()->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {baseTileText->GetLabel()->setVisible(false);}), NULL));
+        menuLeft->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {menuLeft->setVisible(false);}), NULL));
+        menuRight->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {menuRight->setVisible(false);}), NULL));
+        leftMenuText->GetLabel()->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {leftMenuText->GetLabel()->setVisible(false);}), NULL));
+        rightMenuText->GetLabel()->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {rightMenuText->GetLabel()->setVisible(false);}), NULL));
+        menuLeft->ToggleTouch(false);
+        menuRight->ToggleTouch(false);
+        restoreTiles = true;
+        allowRerandomize = true;
+        sceneTimer.SetMark(0);
+        showingReviewRequest = false;
+        
+        if(matches >= 100)
+            retry->ChangeMenu("Play Again", 0, false);
+        else
+            retry->ChangeMenu("Try Again", 0, false);
+        
+        retry->Center();
+            retry->SetBottom(retryBottomPosition);
+            retry->ToggleOn(true);
+            retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+                cocos2d::Sequence::create(
+                    cocos2d::DelayTime::create(0.125),
+                    cocos2d::FadeTo::create(0.5, 64),
+                    cocos2d::FadeTo::create(0.5, 255),
+                    cocos2d::DelayTime::create(0.125), NULL)));
+    }
+    
+    if (!displayGameOver && achievementsUnlocked > 0)
 		DisplayAchievements();
-	}
-
-	//Player chooses to advance clock and match tiles now
-	if (retry->GetItem(0)->getString() == "Ready!" && retry->GetConfirmedSelection() == 0)
-	{
-		audio->PlayClip("double_tone_higher");
-		hideTiles = true;
-		retry->ToggleOn(false);
-		pointsText->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
-		sceneTimer.SetMark(0);
-		timerText->GetLabel()->runAction(cocos2d::FadeOut::create(0.5));
-		msLeft = 0;
-		warningTime = -1000;
-
-		//Only reveal match type after shapes disappear
-		if (matchCriteriaText->GetLabel()->getString() == "Memorize...")
-			UpdateHeaderText(matchCriteria);
-	}
 
 	//Cycle through unlocked achievements
-	if (achievementsUnlocked > 0 && retry->GetConfirmedSelection() == 0)
+	if (!displayGameOver && achievementsUnlocked > 0 && retry->GetConfirmedSelection() == 0)
 	{
 		audio->PlayClip("double_tone_higher");
 
 		//Remove current achievement being show
-		achievementsText[0]->removeFromParent();
+        achievementsText[0]->removeFromParent();
 		achievementsText.erase(achievementsText.begin());
 		achievementsUnlocked--;
 
-		if (achievementsUnlocked == 0)
+        if(achievementsUnlocked == 1 && !requestReview)
+        {
+            sprintf(sz, "See Matching Tiles");
+            
+            retry->ChangeMenu(sz, 0, false);
+            retry->Center();
+            retry->SetBottom(retryBottomPosition);
+            retry->ToggleOn(true);
+            retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
+                cocos2d::Sequence::create(
+                    cocos2d::DelayTime::create(0.125),
+                    cocos2d::FadeTo::create(0.5, 64),
+                    cocos2d::FadeTo::create(0.5, 255),
+                    cocos2d::DelayTime::create(0.125), NULL)));
+        }
+        
+		else if (achievementsUnlocked == 0)
 		{
 			achievementUnlockedHeader->GetLabel()->stopAllActions();
 			achievementUnlockedHeader->GetLabel()->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {achievementUnlockedHeader->GetLabel()->setVisible(false);}), NULL));
 
-            if(matches >= 100)
-                retry->ChangeMenu("Play Again", 0, false);
+            if(!requestReview)
+            {
+                if(matches >= 100)
+                    retry->ChangeMenu("Play Again", 0, false);
+                else
+                    retry->ChangeMenu("Try Again", 0, false);
+                
+                restoreTiles = true;
+            }
+            
             else
-                retry->ChangeMenu("Try Again", 0, false);
+                retry->ChangeMenu("See Matching Tiles", 0, false);
             
 			retry->Center();
 			retry->SetBottom(retryBottomPosition);
@@ -1034,14 +1101,11 @@ void MemoryMode::update(float dt)
 					cocos2d::FadeTo::create(0.5, 64),
 					cocos2d::FadeTo::create(0.5, 255),
 					cocos2d::DelayTime::create(0.125), NULL)));
-
-			if (!displayReviewRequest)
-				restoreTiles = true;
 		}
 	}
 
 	//Restart game from 0 matches (Retry or starting after backing out to main menu)
-	else if (achievementsUnlocked == 0 && retry->GetConfirmedSelection() == 0)
+	else if (!displayGameOver && achievementsUnlocked == 0 && retry->GetConfirmedSelection() == 0)
 	{
 		//Make sure to close chartboost ad so it doesn't interrupt gameplay
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

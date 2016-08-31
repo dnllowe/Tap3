@@ -389,7 +389,7 @@ void Classic::update(float dt)
 		else if (gameOver)
 		{
 			audio->PlayClip("double_tone_low");
-			bonusTime = 0;
+            bonusTime = 0;
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             if(!gameData->getBoolForKey(ads_removed, false))
@@ -437,34 +437,6 @@ void Classic::update(float dt)
 			CheckForAchievements();
 			currentSelection = 1;
 
-			if (achievementsUnlocked > 0)
-			{
-				achievementUnlockedHeader->GetLabel()->setVisible(true);
-				achievementUnlockedHeader->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
-				retry->ChangeMenu("Continue", 0, false);
-				for (int iii = 0; iii < tiles.size(); iii++)
-					tiles[iii]->DismissTile();
-			}
-
-			else
-			{
-                if(matches >= 100)
-                    retry->ChangeMenu("Play Again", 0, false);
-                else
-                    retry->ChangeMenu("Try Again", 0, false);
-				restoreTiles = true;
-			}
-            
-			retry->Center();
-			retry->SetBottom(retryBottomPosition);
-			retry->ToggleOn(true);
-			retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
-				cocos2d::Sequence::create(
-					cocos2d::DelayTime::create(0.125),
-					cocos2d::FadeTo::create(0.5, 64),
-					cocos2d::FadeTo::create(0.5, 255),
-					cocos2d::DelayTime::create(0.125), NULL)));
-
 			//Turn menu buttons back on
 			optionsButton->setVisible(true);
 			highScoresButton->setVisible(true);
@@ -504,6 +476,10 @@ void Classic::update(float dt)
 				gameData->setIntegerForKey(times_opened_today, 0);
 				gameData->setIntegerForKey(times_played_today, 0);
 			}
+            
+            //Need to know if any achievements were unlocked or if review request is true before calling
+            displayGameOver = true;
+            DisplayGameOver();
 		}
 	}
 
@@ -646,22 +622,13 @@ void Classic::update(float dt)
             displayReviewRequest = true;
 	}
 
+    if(displayGameOver && retry->GetConfirmedSelection() == 0)
+    {
     //Check to see if app should ask user for review
-    CheckForReview();
-
-	if (achievementsUnlocked > 0)
-	{
-		for (int iii = 0; iii < tiles.size(); iii++)
-		{
-			tiles[iii]->SetFade(0);
-			tiles[iii]->DismissTile();
-		}
 
 		DisplayAchievements();
-	}
 
 	//Cycle through unlocked achievements
-	if (achievementsUnlocked > 0 && retry->GetConfirmedSelection() == 0)
 	{
 		audio->PlayClip("double_tone_higher");
 
@@ -670,7 +637,6 @@ void Classic::update(float dt)
 		achievementsText.erase(achievementsText.begin());
 		achievementsUnlocked--;
 
-		if (achievementsUnlocked == 0)
 		{
 			achievementUnlockedHeader->GetLabel()->stopAllActions();
 			achievementUnlockedHeader->GetLabel()->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {achievementUnlockedHeader->GetLabel()->setVisible(false);}), NULL));
@@ -695,7 +661,6 @@ void Classic::update(float dt)
 	}
 
 	//Restart game from 0 matches (Retry or starting after backing out to main menu)
-	else if (achievementsUnlocked == 0 && retry->GetConfirmedSelection() == 0)
 	{
 		//Make sure to close chartboost ad so it doesn't interrupt gameplay
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -714,8 +679,6 @@ void Classic::update(float dt)
 		matchMilestone = 5;
 		nextMilestone = 5;
 		timerText->setString(startTimeString);
-		timerText->Center();
-		timerText->SetBottom(timeRemainingBottomPosition);
 
 		//Turn menu buttons off
 		optionsButton->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {optionsButton->setVisible(false);}), NULL));
@@ -990,7 +953,6 @@ void Classic::UpdateTimer()
                 newCardText->GetLabel()->setOpacity(64);
             }
 
-            restoreTiles = true;
 			currentSelection = 1;
 			audio->PlayClip("double_tone_low");
 
@@ -1012,35 +974,6 @@ void Classic::UpdateTimer()
 
 			//Check for achievements
 			CheckForAchievements();
-			
-			if (achievementsUnlocked > 0)
-			{
-				achievementUnlockedHeader->GetLabel()->setVisible(true);
-				achievementUnlockedHeader->GetLabel()->runAction(cocos2d::FadeIn::create(0.25));
-				retry->ChangeMenu("Continue", 0, false);
-				for (int iii = 0; iii < tiles.size(); iii++)
-					tiles[iii]->DismissTile();
-			}
-
-			else
-			{
-                if(matches >= 100)
-                    retry->ChangeMenu("Play Again", 0, false);
-                else
-                    retry->ChangeMenu("Try Again", 0, false);
-				restoreTiles = true;
-			}
-
-			retry->Center();
-			retry->SetBottom(retryBottomPosition);
-			retry->ToggleOn(true);
-			retry->GetItem(0)->runAction(cocos2d::RepeatForever::create(
-				cocos2d::Sequence::create(
-					cocos2d::DelayTime::create(0.125),
-					cocos2d::FadeTo::create(0.5, 64),
-					cocos2d::FadeTo::create(0.5, 255),
-					cocos2d::DelayTime::create(0.125), NULL)));
-
 			//Reveal match type for blind match
 			blindMatch = false;
 			if (scoreText->getString() == "???")

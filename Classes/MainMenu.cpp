@@ -1390,7 +1390,6 @@ void MainMenu::RunIntro()
 
 void MainMenu::onEnter()
 {
-	audio->StopMusic();
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     sdkbox::PluginAdMob::hide("home");
     sdkbox::PluginSdkboxPlay::setListener(this);
