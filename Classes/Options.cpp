@@ -251,6 +251,14 @@ void Options::update(float dt)
 
 void Options::onEnter()
 {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    audio->SetMusicVolume(0.35);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    audio->SetMusicVolume(0.05);
+#endif
+    
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	sdkbox::PluginAdMob::hide("home");
     sdkbox::IAP::setListener(this);
@@ -271,6 +279,13 @@ void Options::onEnter()
 
 void Options::onExit()
 {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    audio->SetMusicVolume(1);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    audio->SetMusicVolume(0.10);
+#endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     sdkbox::IAP::removeListener();

@@ -4578,6 +4578,9 @@ int Game::GetLastYearOpened()
 
 void Game::onEnter()
 {
+    if (gameData->getBoolForKey(music_on, true) && !CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
+        audio->PlayMusic("Tap3-Theme", true);
+    
 	if (gameOver && mode != -1)
 	{
 		retry->ToggleTouch(true);

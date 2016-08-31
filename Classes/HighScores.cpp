@@ -333,6 +333,14 @@ void HighScores::update(float dt)
 
 void HighScores::onEnter()
 {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    audio->SetMusicVolume(0.35);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    audio->SetMusicVolume(0.05);
+#endif
+    
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	sdkbox::PluginAdMob::hide("home");
     sdkbox::PluginSdkboxPlay::setListener(this);
@@ -344,6 +352,15 @@ void HighScores::onEnter()
 
 void HighScores::onExit()
 {
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    audio->SetMusicVolume(1);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    audio->SetMusicVolume(0.10);
+#endif
+    
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     sdkbox::PluginSdkboxPlay::removeListener();
 #endif

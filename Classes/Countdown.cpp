@@ -2126,9 +2126,7 @@ void Countdown::SetMatchParameters(int excludedMatchCriteria, bool blind)
 
 void Countdown::onEnter()
 {
-	if (gameData->getBoolForKey(music_on, true) && gameStarted && !CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
-		audio->PlayMusic("Tap3-Theme", true);
-	mode = COUNTDOWN;
+    mode = COUNTDOWN;
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     sdkbox::PluginSdkboxPlay::setListener(this);

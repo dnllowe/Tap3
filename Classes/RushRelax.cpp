@@ -1738,8 +1738,6 @@ void RushRelax::SetMatchParameters(int excludedMatchCriteria, bool blind)
 
 void RushRelax::onEnter()
 {
-	if (gameData->getBoolForKey(music_on, true) && gameStarted && !CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
-		audio->PlayMusic("Tap3-Theme", true);
 	mode = RUSH_RELAX;
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

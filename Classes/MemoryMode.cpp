@@ -4165,8 +4165,6 @@ void MemoryMode::SetMatchParameters(int excludedMatchCriteria, bool blind)
 
 void MemoryMode::onEnter()
 {
-	if (gameData->getBoolForKey(music_on, true) && gameStarted && !CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
-		audio->PlayMusic("Tap3-Theme", true);
 	mode = MEMORY;
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
