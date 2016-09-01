@@ -2602,7 +2602,7 @@ bool Game::CheckForAchievements()
 		achievementsText.push_back(nrgText::create("No Assistance Necessary (Countdown): Get to 50 Matches in Countdown Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
 
 		achievementsUnlocked++;
-		achievementsText.push_back(nrgText::create("\nTime to Spare: Increase Remaining Time to 90 Seconds or More in Countdown\n\nYou're either very fast, or used some bonus items. Either way, nice work.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+		achievementsText.push_back(nrgText::create("\nTime to Spare: Increase Remaining Time to 60 Seconds or More in Countdown\n\nYou are one fast matcher! ..Or you bought some Time Plus bonuses ;)", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
 
 		achievementsUnlocked++;
 		achievementsText.push_back(nrgText::create("\nTime Keeper: Keep Your Remaining Time Above 20 Seconds for 50 Matches in Countdown\n\nLook at those thumbs go! You waste no time making matches.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));

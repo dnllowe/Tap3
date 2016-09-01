@@ -558,7 +558,7 @@ void Classic::update(float dt)
 		if (!gameOver)
 		{
 			enablePowerups = true;
-			sceneTimer.SetMark(500);
+			sceneTimer.SetMark(powerupEnableDelay);
 		}
 
 		countdownTimer.Restart();

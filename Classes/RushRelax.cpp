@@ -692,7 +692,7 @@ void RushRelax::update(float dt)
 		if (!gameOver && !gameWon)
 		{
 			enablePowerups = true;
-			sceneTimer.SetMark(500);
+			sceneTimer.SetMark(powerupEnableDelay);
 		}
 		matchTimer.Restart();
 	}

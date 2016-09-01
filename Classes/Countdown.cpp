@@ -386,7 +386,7 @@ void Countdown::update(float dt)
 				matchMilestone += nextMilestone;
 			}
 
-			//Check to see if we're still above 50 seconds remaining for first 50 matches
+			//Check to see if we're still above 20 seconds remaining for first 50 matches
             if (msLeft < 20000 && matches <= 50)
                 msWentBelow20 = true;
 			if (!msWentBelow20 && matches > 50)
@@ -618,7 +618,7 @@ void Countdown::update(float dt)
 		if (!gameOver)
 		{
 			enablePowerups = true;
-			sceneTimer.SetMark(500);
+			sceneTimer.SetMark(powerupEnableDelay);
 		}
 	}
 
@@ -1179,7 +1179,7 @@ void Countdown::UpdateTimer()
 	msLeft -= countdownTimer.GetElapsedTime();
 	countdownTimer.Restart();
 
-	if (msLeft >= 90000)
+	if (msLeft >= 60000)
 		timerReached90 = true;
 
 	if (msLeft <= warningTime)
@@ -1542,7 +1542,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(remaining_time_90_seconds_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("\nTime to Spare: Increase Remaining Time to 90 Seconds or More in Countdown\n\nYou're either very fast, or used some bonus items. Either way, nice work.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("\nTime to Spare: Increase Remaining Time to 60 Seconds or More in Countdown\n\nYou are one fast matcher! ..Or you bought some Time Plus bonuses ;)", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;

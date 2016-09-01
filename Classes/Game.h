@@ -226,7 +226,7 @@ protected:
 	int matchMilestone = 5; //Which match to increase time by an extra 5000 ms and add tier one bonus items
 	int nextMilestone = 10; //How much to add to previous milestone for next milestone
 	int timelimit = 15000; //Time limit for memorization in Memory Mode
-
+    int powerupEnableDelay = 0; //How long to wait until restoring powerups
 	bool gameStarted = false;
 	bool gameWon = false; //Whether play reached match 100
 	static bool forcedGameOver;
@@ -248,8 +248,8 @@ protected:
 	enum BONUS { TIME, ELIMINATE, SHOW, NEW };
 
 	bool showingAd = false;
-	int highestMatch = 0; //Highest match player has ever reached on Easy
-	int highestScore = 0; //Highest score player has ever reached Easy
+	int highestMatch = 0; //Highest match player has ever reached
+	int highestScore = 0; //Highest score player has ever reached
 
 	int baseTileTextSize; //Varies based on platform
 	bool displayReviewRequest = false; //Whether to turn on review request forms for display
