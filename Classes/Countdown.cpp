@@ -450,7 +450,7 @@ void Countdown::update(float dt)
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            audio->SetMusicVolume(0.1);
+            audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -864,7 +864,7 @@ void Countdown::update(float dt)
 #endif
         
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        audio->SetMusicVolume(0.20);
+        audio->SetMusicVolume(Game::GetiOSMaxVolumeBG());
 #endif
         
         earnedSpeedDemon1 = false;
@@ -1221,7 +1221,7 @@ void Countdown::UpdateTimer()
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            audio->SetMusicVolume(0.1);
+            audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
     
             if (bonusTimePlusLeft > 0)

@@ -256,7 +256,7 @@ void Options::onEnter()
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.1);
+    audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -278,15 +278,7 @@ void Options::onEnter()
 }
 
 void Options::onExit()
-{
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    audio->SetMusicVolume(1);
-#endif
-    
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.20);
-#endif
-    
+{    
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     sdkbox::IAP::removeListener();
 #endif

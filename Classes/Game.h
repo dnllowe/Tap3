@@ -204,6 +204,11 @@ public:
 
 	virtual void onExit();
 
+    static float GetiOSMinVolumeBG();
+    static float GetiOSMinVolumeSFX();
+    static float GetiOSMaxVolumeBG();
+    static float GetiOSMaxVolumeSFX();
+    
 	enum GAME_MODE { COUNTDOWN, CLASSIC, RUSH_RELAX, MEMORY };
 
 	~Game();
@@ -229,6 +234,10 @@ protected:
 	bool matchMade = false; //Whether player made match on most recent turn
 	static bool requestReview;
 	static int mode;
+    static float iOSMinVolumeBG;
+    static float iOSMinVolumeSFX;
+    static float iOSMaxVolumeBG;
+    static float iOSMaxVolumeSFX;
 	bool allowRerandomize = true;
 
 	//TESTING VARIABLES

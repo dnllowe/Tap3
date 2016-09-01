@@ -530,7 +530,7 @@ void RushRelax::update(float dt)
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            audio->SetMusicVolume(0.1);
+            audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -944,7 +944,7 @@ void RushRelax::update(float dt)
 #endif
         
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        audio->SetMusicVolume(0.20);
+        audio->SetMusicVolume(Game::GetiOSMaxVolumeBG());
 #endif
         
         //For testing purposes

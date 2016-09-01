@@ -857,7 +857,7 @@ void Tutorial_Bonus::onEnter()
 #endif
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	audio->SetMusicVolume(0.1);
+	audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
 	Game::onEnter();
 	return;
@@ -865,14 +865,6 @@ void Tutorial_Bonus::onEnter()
 
 void Tutorial_Bonus::onExit()
 {
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	audio->SetMusicVolume(1);
-#endif
-
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	audio->SetMusicVolume(0.20);
-#endif
-
 	Game::onExit();
 	return;
 }

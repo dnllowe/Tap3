@@ -1157,9 +1157,8 @@ void MainMenu::update(float dt)
 
 void MainMenu::RunIntro()
 {
-	//Stop music
-	audio->StopMusic();
-
+    audio->StopMusic();
+    
 	//Turn everything invisible
 	eyebrow->GetLabel()->setOpacity(0);
 	title->GetLabel()->setOpacity(0);
@@ -1394,8 +1393,16 @@ void MainMenu::onEnter()
     sdkbox::PluginAdMob::hide("home");
     sdkbox::PluginSdkboxPlay::setListener(this);
 #endif
+       
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    audio->SetMusicVolume(0.35);
+#endif
     
-	//This means the user has not gone past the initial screen (where retry is visible and reads "Tap Here to Start"
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    audio->SetMusicVolume(Game::GetiOSMaxVolumeBG());
+#endif
+    
+    //This means the user has not gone past the initial screen (where retry is visible and reads "Tap Here to Start"
 	if (retry->isVisible())
     {
 		retry->ToggleTouch(true);

@@ -6,6 +6,10 @@ Game* Game::instance = NULL;
 bool Game::requestReview = false;
 bool Game::forcedGameOver = false;
 int Game::mode = -1;
+float Game::iOSMinVolumeBG = 0.3;
+float Game::iOSMinVolumeSFX = 0.7;
+float Game::iOSMaxVolumeBG = 0.5;
+float Game::iOSMaxVolumeSFX = 0.7;
 
 Game::Game()
 {
@@ -4688,10 +4692,20 @@ void Game::onEnter()
 #endif
         
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        audio->SetMusicVolume(0.1);
+        audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
     }
 
+    if(!gameOver && mode != -1)
+    {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        audio->SetMusicVolume(1);
+#endif
+        
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        audio->SetMusicVolume(Game::GetiOSMaxVolumeBG());
+#endif
+    }
 	if (yesMenuButtonOn || notReallyMenuButtonOn || okMenuButtonOn || sureMenuButtonOn || noThanksMenuButtonOn)
 	{
 		menuLeft->ToggleTouch(true);
@@ -4719,6 +4733,23 @@ void Game::onExit()
 
 	cocos2d::Layer::onExit();
 	return;
+}
+
+float Game::GetiOSMinVolumeBG()
+{
+    return iOSMinVolumeBG;
+}
+float Game::GetiOSMaxVolumeBG()
+{
+    return iOSMaxVolumeBG;
+}
+float Game::GetiOSMinVolumeSFX()
+{
+    return iOSMinVolumeSFX;
+}
+float Game::GetiOSMaxVolumeSFX()
+{
+    return iOSMaxVolumeSFX;
 }
 
 Game::~Game()
