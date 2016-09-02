@@ -446,7 +446,7 @@ void Countdown::update(float dt)
 			audio->PlayClip("double_tone_low");
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            audio->SetMusicVolume(0.35);
+            audio->SetMusicVolume(0.5);
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -465,7 +465,7 @@ void Countdown::update(float dt)
 			timerText->setString(sz);
 			timerText->Center();
 			timerText->SetBottom(timeRemainingBottomPosition);
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 			CalculateScore();
 			UpdateScore();
 
@@ -882,7 +882,7 @@ void Countdown::update(float dt)
 		timerText->setString(sz);
 		timerText->Center();
 		timerText->SetBottom(timeRemainingBottomPosition);
-        timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+        timerText->ChangeColor(cocos2d::Color3B::BLACK);
         
 		//Turn menu buttons off
 		optionsButton->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {optionsButton->setVisible(false);}), NULL));
@@ -1217,7 +1217,7 @@ void Countdown::UpdateTimer()
 			gameOver = true;
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            audio->SetMusicVolume(0.35);
+            audio->SetMusicVolume(0.5);
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -1247,7 +1247,7 @@ void Countdown::UpdateTimer()
 			timerText->setString(sz);
 			timerText->Center();
 			timerText->SetBottom(timeRemainingBottomPosition);
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 
 			CalculateScore();
 			UpdateScore();
@@ -1364,9 +1364,9 @@ void Countdown::UpdateTimer()
 
 	//Change timer text color if seconds are low (below 1.5 second left)
 	if (msLeft <= msWarning)
-		timerText->ChangeColor(cocos2d::Color4B::RED);
+		timerText->ChangeColor(cocos2d::Color3B::RED);
 	else
-		timerText->ChangeColor(cocos2d::Color4B::BLACK);
+		timerText->ChangeColor(cocos2d::Color3B::BLACK);
 }
 
 void Countdown::DisplayMatchSummary()
@@ -1434,7 +1434,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_10_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 10 Matches (Countdown)\n\nHey, you're getting the hang of this!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 10 Matches (Countdown)\n\nHey, you're getting the hang of this!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1446,7 +1446,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_20_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 20 Matches (Countdown)\n\nThat wasn't too hard, right?", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 20 Matches (Countdown)\n\nThat wasn't too hard, right?", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1458,7 +1458,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_30_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 30 Matches (Countdown)\n\nOk then, we'll have to crank up the difficulty...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 30 Matches (Countdown)\n\nOk then, we'll have to crank up the difficulty...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1470,7 +1470,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_50_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 50 Matches (Countdown)\n\nYou've got 50 matches under your belt. You know the drill. You can do this.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 50 Matches (Countdown)\n\nYou've got 50 matches under your belt. You know the drill. You can do this.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1482,7 +1482,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_60_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 60 Matches (Countdown)\n\nI think we have a natural-born matcher over here!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 60 Matches (Countdown)\n\nI think we have a natural-born matcher over here!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1494,7 +1494,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_70_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 70 Matches (Countdown)\n\nSuch precision. Such efficiency. You are a true Tap 3 Prodigy.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 70 Matches (Countdown)\n\nSuch precision. Such efficiency. You are a true Tap 3 Prodigy.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1506,7 +1506,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_80_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 80 Matches (Countdown)\n\nYou just earned some bragging rights.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 80 Matches (Countdown)\n\nYou just earned some bragging rights.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1518,7 +1518,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_90_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 90 Matches (Countdown)\n\nIs there nothing we can do to stop you???", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 90 Matches (Countdown)\n\nIs there nothing we can do to stop you???", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1530,7 +1530,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(no_bonus_items_used_first_50_matches_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("No Assistance Necessary (Countdown): Get to 50 Matches in Countdown Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("No Assistance Necessary (Countdown): Get to 50 Matches in Countdown Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1542,7 +1542,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(remaining_time_90_seconds_countdown, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("\nTime to Spare: Increase Remaining Time to 60 Seconds or More in Countdown\n\nYou are one fast matcher! ..Or you bought some Time Plus bonuses ;)", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("\nTime to Spare: Increase Remaining Time to 60 Seconds or More in Countdown\n\nYou are one fast matcher! ..Or you bought some Time Plus bonuses ;)", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1554,7 +1554,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(maintain_time_above_20, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("\nTime Keeper: Keep Your Remaining Time Above 20 Seconds for 50 Matches in Countdown\n\nLook at those thumbs go! You waste no time making matches.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("\nTime Keeper: Keep Your Remaining Time Above 20 Seconds for 50 Matches in Countdown\n\nLook at those thumbs go! You waste no time making matches.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1566,7 +1566,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(first_5_matches_in_12_seconds, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Speed Demon: Get First 5 Matches in 12 Seconds in Countdown\n\nThat's some quick thinking!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Speed Demon: Get First 5 Matches in 12 Seconds in Countdown\n\nThat's some quick thinking!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1578,7 +1578,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(first_10_matches_in_24_seconds, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Speed Demon II: Get First 10 Matches in 24 Seconds in Countdown\n\nYou are lightning fast!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Speed Demon II: Get First 10 Matches in 24 Seconds in Countdown\n\nYou are lightning fast!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1590,7 +1590,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(first_20_matches_in_50_seconds, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Speed Demon III: Get First 20 Matches in 50 Seconds in Countdown\n\nCongrats. That's actually faster than we thought humanly possible!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Speed Demon III: Get First 20 Matches in 50 Seconds in Countdown\n\nCongrats. That's actually faster than we thought humanly possible!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1603,8 +1603,8 @@ bool Countdown::CheckForAchievements()
 			gameData->setBoolForKey(reach_match_100_countdown, true);
             achievementsUnlocked++;
             achievementsUnlocked++; //Need extra one for second page of text
-            achievementsText.push_back(nrgText::create("Mastered Countdown: Reach 100 Matches\n\nCongratulations! You've completed 100 Countdown Matches! You've got some fast thumbs and a keen eye!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
-            achievementsText.push_back(nrgText::create("Mastered Countdown: Reach 100 Matches\n\nThank you soooo-oooo much for enjoying Tap 3!!! We hope you still have time for a few more rounds!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+            achievementsText.push_back(nrgText::create("Mastered Countdown: Reach 100 Matches\n\nCongratulations! You've completed 100 Countdown Matches! You've got some fast thumbs and a keen eye!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
+            achievementsText.push_back(nrgText::create("Mastered Countdown: Reach 100 Matches\n\nThank you soooo-oooo much for enjoying Tap 3!!! We hope you still have time for a few more rounds!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
         }
         else
             earnedAllAchievements = false;
@@ -1617,7 +1617,7 @@ bool Countdown::CheckForAchievements()
 		{
 			gameData->setBoolForKey(earned_all_achievements, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Tap 3 Platinum Trophy: You've Earned Every Achievement!\n\nCongratulations! You're in a league of your own! Thank you so much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Tap 3 Platinum Trophy: You've Earned Every Achievement!\n\nCongratulations! You're in a league of your own! Thank you so much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;

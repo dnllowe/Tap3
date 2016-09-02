@@ -251,6 +251,7 @@ protected:
 	int highestMatch = 0; //Highest match player has ever reached
 	int highestScore = 0; //Highest score player has ever reached
 
+	float titleOpacity = 255;
 	int baseTileTextSize; //Varies based on platform
 	bool displayReviewRequest = false; //Whether to turn on review request forms for display
     bool showingReviewRequest = false; //Whether review request forms are still displaying

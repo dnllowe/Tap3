@@ -167,7 +167,7 @@ bool MainMenu::init()
     }
     
     //4x3
-    else if (screenRatio >= 1.32)
+    else if (screenRatio >= 1.32 || screenRatio >= 1.0)
     {
         titleTextSize = 80;
         eyebrowTextSize = 40;
@@ -193,9 +193,9 @@ bool MainMenu::init()
 	optionsButton = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
 	highScoresButton = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
 	buyBonusItemsButton = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
-	optionsText = nrgText::create("Options", "fonts/alba.regular.ttf", topMenuButtonTextSize, 45, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER);
-	highScoresText = nrgText::create("High Scores", "fonts/alba.regular.ttf", topMenuButtonTextSize, 45, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER);
-	buyBonusItemsText = nrgText::create("Buy Bonus Items", "fonts/alba.regular.ttf", topMenuButtonTextSize, 45, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER);
+	optionsText = nrgText::create("Options", "fonts/alba.regular.ttf", topMenuButtonTextSize, 45, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER);
+	highScoresText = nrgText::create("High Scores", "fonts/alba.regular.ttf", topMenuButtonTextSize, 45, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER);
+	buyBonusItemsText = nrgText::create("Buy Bonus Items", "fonts/alba.regular.ttf", topMenuButtonTextSize, 45, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER);
 	menuLeft = nrgButton::create(batch, "question_tile.png", "question_tile_pressed.png", false);
 	menuRight = nrgButton::create(batch, "question_tile.png", "question_tile_pressed.png", false);
 
@@ -216,9 +216,8 @@ bool MainMenu::init()
     buyBonusItemsButton->ChangeTouchListenerPriority(2);
     
 	//Title assets
-    title = nrgText::create("Tap 3!", "fonts/alba.super.ttf", titleTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B(20, 175, 255, 128));
-	eyebrow = nrgText::create("Welcome to...", "fonts/alba.regular.ttf", eyebrowTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B(127, 211, 255, 128));
-	
+    title = nrgText::create("Tap 3!", "fonts/alba.super.ttf", titleTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B(127, 211, 255));
+	eyebrow = nrgText::create("Welcome to...", "fonts/alba.regular.ttf", eyebrowTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B(127, 211, 255));
 	addChild(title);
 	addChild(eyebrow);
 
@@ -256,8 +255,8 @@ bool MainMenu::init()
 	//Request for review assets
 	int maxWidth = baseTile->GetWidth() * 0.9;
 
-	rightMenuText = nrgText::create("Start", "fonts/alba.super.ttf", baseTileMenuButtonTextSize, maxWidth, 0, 0, cocos2d::Color4B(127, 211, 255, 255));
-	leftMenuText = nrgText::create("Back", "fonts/alba.super.ttf", baseTileMenuButtonTextSize, maxWidth, 0, 0, cocos2d::Color4B(127, 211, 255, 255));
+	rightMenuText = nrgText::create("Start", "fonts/alba.super.ttf", baseTileMenuButtonTextSize, maxWidth, 0, 0, cocos2d::Color3B(127, 211, 255));
+	leftMenuText = nrgText::create("Back", "fonts/alba.super.ttf", baseTileMenuButtonTextSize, maxWidth, 0, 0, cocos2d::Color3B(127, 211, 255));
 	addChild(leftMenuText);
 	addChild(rightMenuText);
 
@@ -349,21 +348,21 @@ bool MainMenu::init()
 	memoryButton->setPositionY(baseTile->getPositionY() - baseTile->GetHeight() / 2 + baseTile->GetHeight() * 0.2);
 
 	//Basetile text assets
-	baseTileTitle = nrgText::create("Choose Game Mode", "fonts/alba.regular.ttf", baseTileTextSize + 2, maxWidth, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER);
+	baseTileTitle = nrgText::create("Choose Game Mode", "fonts/alba.regular.ttf", baseTileTextSize + 2, maxWidth, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER);
 	addChild(baseTileTitle);
 	baseTileTitle->GetLabel()->setOpacity(0);
 	baseTileTitle->setVisible(false);
 	baseTileTitle->Center();
 	baseTileTitle->setPositionY(baseTile->getPositionY() + baseTile->GetHeight() * 0.45);
 
-	baseTileText = nrgText::create("", "fonts/POE.ttf", baseTileTextSize, maxWidth, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER);
+	baseTileText = nrgText::create("", "fonts/POE.ttf", baseTileTextSize, maxWidth, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER);
 	addChild(baseTileText);
 	baseTileText->GetLabel()->setOpacity(0);
 	baseTileText->setVisible(false);
 	baseTileText->Center();
 	baseTileText->setPositionY(baseTile->getPositionY() + baseTile->GetHeight() * 0.45);
 
-	scoreText = nrgText::create("Best Score (Countdown)", "fonts/POE.ttf", scoreTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
+	scoreText = nrgText::create("Best Score (Countdown)", "fonts/POE.ttf", scoreTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
 	addChild(scoreText);
 	pointsText = nrgText::create("0", "fonts/POE.ttf", pointsTextSize, SCREEN_WIDTH);
 	addChild(pointsText);
@@ -388,11 +387,11 @@ bool MainMenu::init()
 	menuRight->setPositionY(menuLeft->getPositionY());
 
 	//Retry menu
-	retry = nrgMenu::create("Tap Here To Start", "fonts/alba.regular.ttf", 0, retryTextSize, 0, cocos2d::Color4B::BLACK, cocos2d::Color4B::YELLOW, false);
-	countdownText = nrgText::create("Countdown", "fonts/alba.super.ttf", gameModeTextSize - 1, countdownButton->GetWidth() * 0.9, 0, 0, cocos2d::Color4B(127, 211, 255, 255), cocos2d::TextHAlignment::CENTER);
-	classicText = nrgText::create("Classic", "fonts/alba.super.ttf", gameModeTextSize, classicButton->GetWidth() * 0.9, 0, 0, cocos2d::Color4B(127, 211, 255, 255), cocos2d::TextHAlignment::CENTER);
-	practiceText = nrgText::create("100 Matches", "fonts/alba.super.ttf", gameModeTextSize - 1, practiceButton->GetWidth() * 0.9, 0, 0, cocos2d::Color4B(127, 211, 255, 255), cocos2d::TextHAlignment::CENTER);
-	memoryText = nrgText::create("Memory", "fonts/alba.super.ttf", gameModeTextSize, memoryButton->GetWidth() * 0.9, 0, 0, cocos2d::Color4B(127, 211, 255, 255), cocos2d::TextHAlignment::CENTER);
+	retry = nrgMenu::create("Tap Here To Start", "fonts/alba.regular.ttf", 0, retryTextSize, 0, cocos2d::Color3B::BLACK, cocos2d::Color3B::YELLOW, false);
+	countdownText = nrgText::create("Countdown", "fonts/alba.super.ttf", gameModeTextSize - 1, countdownButton->GetWidth() * 0.9, 0, 0, cocos2d::Color3B(127, 211, 255), cocos2d::TextHAlignment::CENTER);
+	classicText = nrgText::create("Classic", "fonts/alba.super.ttf", gameModeTextSize, classicButton->GetWidth() * 0.9, 0, 0, cocos2d::Color3B(127, 211, 255), cocos2d::TextHAlignment::CENTER);
+	practiceText = nrgText::create("100 Matches", "fonts/alba.super.ttf", gameModeTextSize - 1, practiceButton->GetWidth() * 0.9, 0, 0, cocos2d::Color3B(127, 211, 255), cocos2d::TextHAlignment::CENTER);
+	memoryText = nrgText::create("Memory", "fonts/alba.super.ttf", gameModeTextSize, memoryButton->GetWidth() * 0.9, 0, 0, cocos2d::Color3B(127, 211, 255), cocos2d::TextHAlignment::CENTER);
 	addChild(retry);
 	addChild(countdownText);
 	addChild(classicText);
@@ -404,10 +403,10 @@ bool MainMenu::init()
 	practiceText->GetLabel()->setOpacity(0);
 	memoryText->GetLabel()->setOpacity(0);
 
-	countdownButton->LinkWithText(countdownText, cocos2d::Color4B::GRAY);
-	classicButton->LinkWithText(classicText, cocos2d::Color4B::GRAY);
-	practiceButton->LinkWithText(practiceText, cocos2d::Color4B::GRAY);
-	memoryButton->LinkWithText(memoryText, cocos2d::Color4B::GRAY);
+	countdownButton->LinkWithText(countdownText, cocos2d::Color3B::GRAY);
+	classicButton->LinkWithText(classicText, cocos2d::Color3B::GRAY);
+	practiceButton->LinkWithText(practiceText, cocos2d::Color3B::GRAY);
+	memoryButton->LinkWithText(memoryText, cocos2d::Color3B::GRAY);
 
 	menuLeft->addEvents();
 	menuRight->addEvents();
@@ -1047,7 +1046,7 @@ void MainMenu::update(float dt)
 			cocos2d::Sequence::create(
 				cocos2d::MoveBy::create(2, cocos2d::Vec2(0, 10)),
 				cocos2d::MoveBy::create(2, cocos2d::Vec2(0, -10)), NULL)));
-        title->GetLabel()->runAction(cocos2d::FadeIn::create(1));
+        title->GetLabel()->runAction(cocos2d::FadeTo::create(1, titleOpacity));
         
         baseTile->setPositionY(baseTile->getPositionY() + offset);
         baseTile->runAction(cocos2d::Spawn::create(
@@ -1218,7 +1217,7 @@ void MainMenu::RunIntro()
 	
 	eyebrow->GetLabel()->setPositionY(offset);
 	eyebrow->GetLabel()->runAction(cocos2d::Spawn::create(
-		cocos2d::FadeIn::create(duration),
+		cocos2d::FadeTo::create(duration, titleOpacity),
 		cocos2d::MoveBy::create(duration, cocos2d::Vec2(0, -offset)), NULL));
 	
 	title->GetLabel()->setPositionY(offset);
@@ -1228,7 +1227,7 @@ void MainMenu::RunIntro()
 		cocos2d::CallFunc::create([this]() {
 			title->GetLabel()->runAction(
 				cocos2d::Spawn::create(
-					cocos2d::FadeIn::create(0.5),
+					cocos2d::FadeTo::create(0.5, titleOpacity),
 					cocos2d::MoveBy::create(0.5, cocos2d::Vec2(0, -50)), NULL));
 			}),
 		cocos2d::CallFunc::create([this]()
@@ -1395,7 +1394,7 @@ void MainMenu::onEnter()
 #endif
        
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    audio->SetMusicVolume(0.35);
+    audio->SetMusicVolume(0.5);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

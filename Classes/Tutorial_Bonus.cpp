@@ -107,9 +107,8 @@ bool Tutorial_Bonus::init()
 
 	Reset();
 
-    
     timerText->ChangeTextSize(15);
-    timerText->ChangeColor(cocos2d::Color4B::GRAY);
+    timerText->ChangeColor(cocos2d::Color3B::GRAY);
 	timerText->setString("");
 	timerText->Center();
 	timerText->setPositionY(timeRemainingBottomPosition + textOffsetY);
@@ -794,7 +793,7 @@ void Tutorial_Bonus::Reset()
 	showMatchText->GetLabel()->setOpacity(0);
 	newCardText->GetLabel()->setOpacity(0);
 
-	timerText->ChangeColor(cocos2d::Color4B::GRAY);
+	timerText->ChangeColor(cocos2d::Color3B::GRAY);
 	retry->ChangeMenu("Next", 0, false);
 	retry->Center();
 	retry->SetBottom(retryBottomPosition);
@@ -853,7 +852,7 @@ void Tutorial_Bonus::onEnter()
 	sdkbox::PluginAdMob::hide("home");
 #endif
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	audio->SetMusicVolume(0.35);
+	audio->SetMusicVolume(0.5);
 #endif
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

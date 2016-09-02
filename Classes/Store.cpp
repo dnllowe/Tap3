@@ -57,10 +57,6 @@ bool Store::init()
 	separatorText = "______________________________";
 //#endif
 
-//#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//	separatorText = "_________________________";
-//#endif
-
 	std::string timePlusDescriptionString = "Adds 10 seconds to your remaining time. Crucial when you need an extra moment in a pinch.";
 	std::string eliminateDescriptionString = "Each use removes 2 non-matching tiles from the card. Helps you hone in on the matches.";
 	std::string showMatchDescriptionString = "Each use partially fades one of the matching tiles. Use to get a clue for the matching pattern.";
@@ -90,8 +86,8 @@ bool Store::init()
  
     backButton = nrgButton::create("back_button.png", "back_button_pressed.png", false);
 	addChild(backButton);
-	title = nrgText::create("Bonus Items", "fonts/alba.super.ttf", titleTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B(20, 175, 255, 128));
-	separator_1 = nrgText::create(separatorText, "fonts/alba.super.ttf", separatorTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B(20, 175, 255, 128));
+	title = nrgText::create("Bonus Items", "fonts/alba.super.ttf", titleTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B(127, 211, 255));
+	separator_1 = nrgText::create(separatorText, "fonts/alba.super.ttf", separatorTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B(127, 211, 255));
 	
 	buy_1 = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
 	buy_2 = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
@@ -101,74 +97,73 @@ bool Store::init()
 	buy_6 = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
 	buy_7 = nrgButton::create(batch, "menu_button.png", "menu_button_pressed.png", false);
 
-	buy_1_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
-	buy_2_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
-	buy_3_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
-	buy_4_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
-	buy_5_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
-	buy_6_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
-	buy_7_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::WHITE);
+	buy_1_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
+	buy_2_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
+	buy_3_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
+	buy_4_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
+	buy_5_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
+	buy_6_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
+	buy_7_text = nrgText::create("Buy", "fonts/POE.ttf", buyTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::WHITE);
 
-	price_1 = nrgText::create("10x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	price_2 = nrgText::create("15x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	price_3 = nrgText::create("10x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	price_4 = nrgText::create("10x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	price_5 = nrgText::create("1x for $2.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	price_6 = nrgText::create("1x for $4.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	price_7 = nrgText::create("1x for $19.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
+	price_1 = nrgText::create("10x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	price_2 = nrgText::create("15x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	price_3 = nrgText::create("10x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	price_4 = nrgText::create("10x for $0.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	price_5 = nrgText::create("1x for $2.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	price_6 = nrgText::create("1x for $4.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	price_7 = nrgText::create("1x for $19.99", "fonts/POE.ttf", priceTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
 
-	timePlusQuantity = nrgText::create(timePlusQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	eliminateQuantity = nrgText::create(eliminateQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	showMatchQuantity = nrgText::create(showMatchQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	newCardQuantity = nrgText::create(newCardQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	timePlusQuantity = nrgText::create(timePlusQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	eliminateQuantity = nrgText::create(eliminateQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	showMatchQuantity = nrgText::create(showMatchQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	newCardQuantity = nrgText::create(newCardQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
-	comboQuantity_1 = nrgText::create(comboQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	comboQuantity_2 = nrgText::create(comboQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	comboQuantity_1 = nrgText::create(comboQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	comboQuantity_2 = nrgText::create(comboQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 	comboQuantityString.insert(comboQuantityString.begin(), '\n');
-	comboQuantity_3 = nrgText::create(comboQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	comboQuantity_3 = nrgText::create(comboQuantityString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
 
 	timePlusMain = nrgSprite::create(batch, "time_tile.png", false);
 	timePlusSmallThumbnail_1 = nrgSprite::create(batch, "time_tile.png", false);
 	timePlusSmallThumbnail_2 = nrgSprite::create(batch, "time_tile.png", false);
 	timePlusSmallThumbnail_3 = nrgSprite::create(batch, "time_tile.png", false);
-	timePlusDescription = nrgText::create(timePlusDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	timePlusTitle = nrgText::create("Time +", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	timePlusDescription = nrgText::create(timePlusDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	timePlusTitle = nrgText::create("Time +", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
 	eliminateMain = nrgSprite::create(batch, "eliminate_tile.png", false);
 	eliminateSmallThumbnail_1 = nrgSprite::create(batch, "eliminate_tile.png", false);
 	eliminateSmallThumbnail_2 = nrgSprite::create(batch, "eliminate_tile.png", false);
 	eliminateSmallThumbnail_3 = nrgSprite::create(batch, "eliminate_tile.png", false);
-	eliminateDescription = nrgText::create(eliminateDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	eliminateTitle = nrgText::create("Eliminate Tiles", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	eliminateDescription = nrgText::create(eliminateDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	eliminateTitle = nrgText::create("Eliminate Tiles", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
 	showMatchMain = nrgSprite::create(batch, "show_match_tile.png", false);
 	showMatchSmallThumbnail_1 = nrgSprite::create(batch, "show_match_tile.png", false);
 	showMatchSmallThumbnail_2 = nrgSprite::create(batch, "show_match_tile.png", false);
 	showMatchSmallThumbnail_3 = nrgSprite::create(batch, "show_match_tile.png", false);
-	showMatchDescription = nrgText::create(showMatchDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	showMatchTitle = nrgText::create("Show Match", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	showMatchDescription = nrgText::create(showMatchDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	showMatchTitle = nrgText::create("Show Match", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
 	newCardMain = nrgSprite::create(batch, "new_card_tile.png", false);
 	newCardSmallThumbnail_1 = nrgSprite::create(batch, "new_card_tile.png", false);
 	newCardSmallThumbnail_2 = nrgSprite::create(batch, "new_card_tile.png", false);
 	newCardSmallThumbnail_3 = nrgSprite::create(batch, "new_card_tile.png", false);
-	newCardDescription = nrgText::create(newCardDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	newCardTitle = nrgText::create("Reset Tiles", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	newCardDescription = nrgText::create(newCardDescriptionString, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	newCardTitle = nrgText::create("Reset Tiles", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
-	comboDescription_1 = nrgText::create(comboDescription_1_String, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	comboTitle_1 = nrgText::create("Combo Pack", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	comboDescription_1 = nrgText::create(comboDescription_1_String, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	comboTitle_1 = nrgText::create("Combo Pack", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
-	comboDescription_2 = nrgText::create(comboDescription_2_String, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	comboTitle_2 = nrgText::create("Double Pack", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	comboDescription_2 = nrgText::create(comboDescription_2_String, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	comboTitle_2 = nrgText::create("Double Pack", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 	
-	comboDescription_3 = nrgText::create(comboDescription_3_String, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
-	comboTitle_3 = nrgText::create("The All Nighter", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color4B::GRAY);
+	comboDescription_3 = nrgText::create(comboDescription_3_String, "fonts/POE.ttf", descriptionTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
+	comboTitle_3 = nrgText::create("The All Nighter", "fonts/POE.ttf", subtitleTextSize, SCREEN_WIDTH * 3 / 4, 0, 0, cocos2d::Color3B::GRAY);
 
 	addChild(title);
 	addChild(separator_1);
 
-	
 	buy_1->AddToScrollView(scrollView);
 	buy_2->AddToScrollView(scrollView);
 	buy_3->AddToScrollView(scrollView);
@@ -519,7 +514,7 @@ void Store::update(float dt)
 void Store::onEnter()
 {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    audio->SetMusicVolume(0.35);
+    audio->SetMusicVolume(0.5);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

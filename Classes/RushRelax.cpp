@@ -425,7 +425,7 @@ void RushRelax::update(float dt)
 				timerText->setString(sz);
 				timerText->Center();
 				timerText->SetBottom(timeRemainingBottomPosition);
-				timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+				timerText->ChangeColor(cocos2d::Color3B::BLACK);
 				changeHeader = true;
 
 				CalculateScore();
@@ -437,7 +437,7 @@ void RushRelax::update(float dt)
 				//Update text
 				achievementUnlockedHeader->setString("100 Matches Mode Complete!");
 				achievementUnlockedHeader->setPositionX(SCREEN_WIDTH / 2 - achievementUnlockedHeader->GetScaledWidth() / 2);
-				achievementsText.push_back(nrgText::create("\nYou're a Pro, now! Use your skills in the other Game Modes, or try to improve your 100 Matches High Score.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+				achievementsText.push_back(nrgText::create("\nYou're a Pro, now! Use your skills in the other Game Modes, or try to improve your 100 Matches High Score.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 				achievementsUnlocked++;
 
 				//Check for new best score
@@ -526,7 +526,7 @@ void RushRelax::update(float dt)
 			audio->PlayClip("double_tone_low");
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            audio->SetMusicVolume(0.35);
+            audio->SetMusicVolume(0.5);
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -545,7 +545,7 @@ void RushRelax::update(float dt)
 			timerText->setString(sz);
 			timerText->Center();
 			timerText->SetBottom(timeRemainingBottomPosition);
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 			CalculateScore();
 			UpdateScore();
 
@@ -1244,7 +1244,7 @@ bool RushRelax::CheckForAchievements()
 		{
 			gameData->setBoolForKey(slow_poke, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Slow Poke\n\nTake over 20 seconds to make a match. Hey, slow and steady wins the race, right?", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Slow Poke\n\nTake over 20 seconds to make a match. Hey, slow and steady wins the race, right?", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1256,7 +1256,7 @@ bool RushRelax::CheckForAchievements()
 		{
 			gameData->setBoolForKey(golf_rules, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Golf Rules\n\nBeat 100 Matches Mode with a score of 500 points. If patience is a virtue, you have a lot of virtue!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Golf Rules\n\nBeat 100 Matches Mode with a score of 500 points. If patience is a virtue, you have a lot of virtue!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;

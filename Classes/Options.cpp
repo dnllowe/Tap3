@@ -81,21 +81,21 @@ bool Options::init()
 	else
 		removeAdsTextInput = "Remove Ads ($2.99)";
 
-	title = nrgText::create("Options", "fonts/alba.super.ttf", titleTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B(20, 175, 255, 128));
-	musicText = nrgText::create("Music:", "fonts/POE.ttf", textSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	soundText = nrgText::create("Sound:", "fonts/POE.ttf", textSize, SCREEN_WIDTH, 0, 0, cocos2d::Color4B::GRAY);
-	musicOnOff = nrgMenu::create(musicTextInput, "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color4B::GRAY, cocos2d::Color4B::YELLOW, false);
-	soundOnOff = nrgMenu::create(soundTextInput, "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color4B::GRAY, cocos2d::Color4B::YELLOW, false);
-	removeAds = nrgMenu::create(removeAdsTextInput, "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color4B::GRAY, cocos2d::Color4B::YELLOW, false);
-	howToPlay = nrgMenu::create("Tutorial: How To Play", "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color4B::GRAY, cocos2d::Color4B::YELLOW, false);
-	usingBonusItems = nrgMenu::create("Tutorial: Using Bonus Items", "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color4B::GRAY, cocos2d::Color4B::YELLOW, false);
-	restorePurchases = nrgMenu::create("Restore Purchases", "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color4B::GRAY, cocos2d::Color4B::YELLOW, false);
+	title = nrgText::create("Options", "fonts/alba.super.ttf", titleTextSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B(127, 211, 255));
+	musicText = nrgText::create("Music:", "fonts/POE.ttf", textSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	soundText = nrgText::create("Sound:", "fonts/POE.ttf", textSize, SCREEN_WIDTH, 0, 0, cocos2d::Color3B::GRAY);
+	musicOnOff = nrgMenu::create(musicTextInput, "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color3B::GRAY, cocos2d::Color3B::YELLOW, false);
+	soundOnOff = nrgMenu::create(soundTextInput, "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color3B::GRAY, cocos2d::Color3B::YELLOW, false);
+	removeAds = nrgMenu::create(removeAdsTextInput, "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color3B::GRAY, cocos2d::Color3B::YELLOW, false);
+	howToPlay = nrgMenu::create("Tutorial: How To Play", "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color3B::GRAY, cocos2d::Color3B::YELLOW, false);
+	usingBonusItems = nrgMenu::create("Tutorial: Using Bonus Items", "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color3B::GRAY, cocos2d::Color3B::YELLOW, false);
+	restorePurchases = nrgMenu::create("Restore Purchases", "fonts/POE.ttf", 0, textSize, 0, cocos2d::Color3B::GRAY, cocos2d::Color3B::YELLOW, false);
 	backButton = nrgButton::create(batch, "back_button.png", "back_button_pressed.png", false);
 
 	if (!highlightMusic)
-		musicOnOff->ChangeTextColor1(cocos2d::Color4B(225, 225, 225, 255));
+		musicOnOff->ChangeTextColor1(cocos2d::Color3B(225, 225, 225));
 	if (!highlightSound)
-		soundOnOff->ChangeTextColor1(cocos2d::Color4B(225, 225, 225, 255));
+		soundOnOff->ChangeTextColor1(cocos2d::Color3B(225, 225, 225));
 
 	nrgFunctions::ResizeForDevice(backButton);
 	backButton->addEvents();
@@ -178,7 +178,7 @@ void Options::update(float dt)
 			gameData->setBoolForKey(music_on, false);
 			audio->StopMusic();
 			musicOnOff->ChangeMenu("Off", 0, false);
-			musicOnOff->ChangeTextColor1(cocos2d::Color4B(225, 225, 225, 255));
+			musicOnOff->ChangeTextColor1(cocos2d::Color3B(225, 225, 225));
 			musicOnOff->SetBottom(musicText->GetBottom());
 			musicOnOff->setPositionX(SCREEN_WIDTH * 2 / 3);
 		}
@@ -188,7 +188,7 @@ void Options::update(float dt)
 			audio->PlayClip("double_tone_higher");
 			gameData->setBoolForKey(music_on, true);
 			musicOnOff->ChangeMenu("On", 0, false);
-			musicOnOff->ChangeTextColor1(cocos2d::Color4B::GRAY);
+			musicOnOff->ChangeTextColor1(cocos2d::Color3B::GRAY);
 			musicOnOff->SetBottom(musicText->GetBottom());
 			musicOnOff->setPositionX(SCREEN_WIDTH * 2 / 3);
 		}
@@ -201,7 +201,7 @@ void Options::update(float dt)
 			gameData->setBoolForKey(sound_on, false);
 			audio->MuteSound();
 			soundOnOff->ChangeMenu("Off", 0, false);
-			soundOnOff->ChangeTextColor1(cocos2d::Color4B(225, 225, 225, 255));
+			soundOnOff->ChangeTextColor1(cocos2d::Color3B(225, 225, 225));
 			soundOnOff->SetBottom(soundText->GetBottom());
 			soundOnOff->setPositionX(SCREEN_WIDTH * 2 / 3);
 		}
@@ -212,7 +212,7 @@ void Options::update(float dt)
 			gameData->setBoolForKey(sound_on, true);
 			audio->UnmuteSound();
 			soundOnOff->ChangeMenu("On", 0, false);
-			soundOnOff->ChangeTextColor1(cocos2d::Color4B::GRAY);
+			soundOnOff->ChangeTextColor1(cocos2d::Color3B::GRAY);
 			soundOnOff->SetBottom(soundText->GetBottom());
 			soundOnOff->setPositionX(SCREEN_WIDTH * 2 / 3);
 		}
@@ -252,7 +252,7 @@ void Options::update(float dt)
 void Options::onEnter()
 {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    audio->SetMusicVolume(0.35);
+    audio->SetMusicVolume(0.5);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

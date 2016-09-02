@@ -79,6 +79,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     audio->SetMusicVolume(Game::GetiOSMaxVolumeBG());
     audio->SetClipVolume(Game::GetiOSMaxVolumeSFX());
 #endif
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	audio->SetMusicVolume(0.5);
+#endif
     // turn on display FPS
     director->setDisplayStats(false);
 

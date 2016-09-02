@@ -414,7 +414,7 @@ void MemoryMode::update(float dt)
 			eliminateUsedOnCurrentCard = 0;
 			excludedEliminateTiles.clear();
 
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 			timerText->GetLabel()->runAction(cocos2d::FadeIn::create(0.5));
 
 			//Check for no bonuses used achievement
@@ -485,7 +485,7 @@ void MemoryMode::update(float dt)
 			audio->PlayClip("double_tone_low");
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            audio->SetMusicVolume(0.35);
+            audio->SetMusicVolume(0.5);
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -503,7 +503,7 @@ void MemoryMode::update(float dt)
 			timerText->setString(sz);
 			timerText->Center();
 			timerText->SetBottom(timeRemainingBottomPosition);
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 			timerText->GetLabel()->runAction(cocos2d::FadeIn::create(0.5));
 			CalculateScore();
 			UpdateScore();
@@ -601,7 +601,7 @@ void MemoryMode::update(float dt)
 		audio->PlayClip("double_tone_low");
         
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-        audio->SetMusicVolume(0.35);
+        audio->SetMusicVolume(0.5);
 #endif
         
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -619,7 +619,7 @@ void MemoryMode::update(float dt)
 		timerText->setString(sz);
 		timerText->Center();
 		timerText->SetBottom(timeRemainingBottomPosition);
-		timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+		timerText->ChangeColor(cocos2d::Color3B::BLACK);
 		CalculateScore();
 		UpdateScore();
 
@@ -1163,7 +1163,7 @@ void MemoryMode::update(float dt)
 		timerText->setString(sz);
 		timerText->Center();
 		timerText->SetBottom(timeRemainingBottomPosition);
-		timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+		timerText->ChangeColor(cocos2d::Color3B::BLACK);
 		timerText->GetLabel()->runAction(cocos2d::FadeIn::create(0.5));
 
 		//Turn menu buttons off
@@ -2063,9 +2063,9 @@ void MemoryMode::UpdateTimer()
 
 	//Change timer text color if seconds are low (below 1.5 second left)
 	if (msLeft <= msWarning)
-		timerText->ChangeColor(cocos2d::Color4B::RED);
+		timerText->ChangeColor(cocos2d::Color3B::RED);
 	else
-		timerText->ChangeColor(cocos2d::Color4B::BLACK);
+		timerText->ChangeColor(cocos2d::Color3B::BLACK);
 
 	return;
 }
@@ -2356,7 +2356,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_10_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 10 Matches (Memory)\n\nYou see? It's possible when you put your mind to it!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 10 Matches (Memory)\n\nYou see? It's possible when you put your mind to it!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2368,7 +2368,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_20_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 20 Matches (Memory)\n\nYou've got a knack for this!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 20 Matches (Memory)\n\nYou've got a knack for this!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2380,7 +2380,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_30_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 30 Matches (Memory)\n\nMy mind can't comprehend what your mind is doing!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 30 Matches (Memory)\n\nMy mind can't comprehend what your mind is doing!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2392,7 +2392,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_50_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 50 Matches (Memory)\n\nRemember when this seemed impossible? (That's a memory-themed joke).", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 50 Matches (Memory)\n\nRemember when this seemed impossible? (That's a memory-themed joke).", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2404,7 +2404,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_60_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 60 Matches (Memory)\n\nOk... You don't have a photographic memory, do you?", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 60 Matches (Memory)\n\nOk... You don't have a photographic memory, do you?", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2416,7 +2416,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_70_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 70 Matches (Memory)\n\nWhew. Doesn't your head hurt? Of course, not. You're some kind of genius...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 70 Matches (Memory)\n\nWhew. Doesn't your head hurt? Of course, not. You're some kind of genius...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2428,7 +2428,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_80_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 80 Matches (Memory)\n\nYou're definitely one of those people who remembers what they had for breakfast.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 80 Matches (Memory)\n\nYou're definitely one of those people who remembers what they had for breakfast.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2440,7 +2440,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_90_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 90 Matches (Memory)\n\nI guess you CAN do anything when you put your mind to it!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 90 Matches (Memory)\n\nI guess you CAN do anything when you put your mind to it!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2452,7 +2452,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(no_bonus_items_used_first_50_matches_memory, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("No Assistance Necessary (Memory): Get to 50 Matches in Memory Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("No Assistance Necessary (Memory): Get to 50 Matches in Memory Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -2465,8 +2465,8 @@ bool MemoryMode::CheckForAchievements()
 			gameData->setBoolForKey(reach_match_100_memory, true);
             achievementsUnlocked++;
             achievementsUnlocked++; //Need extra one for second page of text
-            achievementsText.push_back(nrgText::create("Mastered Memory: Reach 100 Matches\n\nCongratulations! You've completed 100 Memory Matches! Your mind is a force to be reckoned with!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
-            achievementsText.push_back(nrgText::create("Mastered Memory: Reach 100 Matches\n\nThank you soooo-oooo much for enjoying Tap 3!!! We hope you cherish the memories!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+            achievementsText.push_back(nrgText::create("Mastered Memory: Reach 100 Matches\n\nCongratulations! You've completed 100 Memory Matches! Your mind is a force to be reckoned with!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
+            achievementsText.push_back(nrgText::create("Mastered Memory: Reach 100 Matches\n\nThank you soooo-oooo much for enjoying Tap 3!!! We hope you cherish the memories!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
         }
         else
             earnedAllAchievements = false;
@@ -2479,7 +2479,7 @@ bool MemoryMode::CheckForAchievements()
 		{
 			gameData->setBoolForKey(earned_all_achievements, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Tap 3 Platinum Trophy: You've Earned Every Achievement!\n\nCongratulations! You're in a league of your own! Thank you so much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Tap 3 Platinum Trophy: You've Earned Every Achievement!\n\nCongratulations! You're in a league of your own! Thank you so much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;

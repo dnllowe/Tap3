@@ -392,7 +392,7 @@ void Classic::update(float dt)
             bonusTime = 0;
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            audio->SetMusicVolume(0.35);
+            audio->SetMusicVolume(0.5);
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -411,7 +411,7 @@ void Classic::update(float dt)
 			timerText->setString(sz);
 			timerText->Center();
 			timerText->SetBottom(timeRemainingBottomPosition);
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 			CalculateScore();
 			UpdateScore();
 
@@ -813,7 +813,7 @@ void Classic::update(float dt)
 		timerText->setString(startTimeString);
         timerText->Center();
         timerText->SetBottom(timeRemainingBottomPosition);
-        timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+        timerText->ChangeColor(cocos2d::Color3B::BLACK);
 
 		//Turn menu buttons off
 		optionsButton->runAction(cocos2d::Sequence::create(cocos2d::FadeOut::create(0.25), cocos2d::CallFunc::create([this]() {optionsButton->setVisible(false);}), NULL));
@@ -1083,7 +1083,7 @@ void Classic::UpdateTimer()
 			bonusTime = 0;
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            audio->SetMusicVolume(0.35);
+            audio->SetMusicVolume(0.5);
 #endif
             
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -1107,7 +1107,7 @@ void Classic::UpdateTimer()
 			timerText->setString(sz);
 			timerText->Center();
 			timerText->SetBottom(timeRemainingBottomPosition);
-			timerText->GetLabel()->setTextColor(cocos2d::Color4B::BLACK);
+			timerText->ChangeColor(cocos2d::Color3B::BLACK);
 
 			CalculateScore();
 			UpdateScore();
@@ -1210,9 +1210,9 @@ void Classic::UpdateTimer()
 
 	//Change timer text color if seconds are low (below 1.5 second left)
 	if (msLeft <= msWarning)
-		timerText->ChangeColor(cocos2d::Color4B::RED);
+		timerText->ChangeColor(cocos2d::Color3B::RED);
 	else
-		timerText->ChangeColor(cocos2d::Color4B::BLACK);
+		timerText->ChangeColor(cocos2d::Color3B::BLACK);
 }
 
 void Classic::DisplayMatchSummary()
@@ -1264,7 +1264,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_1_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Difficult. Not Impossible\n\nYou got your first Classic Match! Give yourself a pat on the back. Not everyone can do that.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Difficult. Not Impossible\n\nYou got your first Classic Match! Give yourself a pat on the back. Not everyone can do that.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1276,7 +1276,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_10_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 10 Matches (Classic)\n\nI see potential in you...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 10 Matches (Classic)\n\nI see potential in you...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1288,7 +1288,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_20_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 20 Matches (Classic)\n\nSee? 3 seconds is plenty of time!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 20 Matches (Classic)\n\nSee? 3 seconds is plenty of time!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1300,7 +1300,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_30_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 30 Matches (Classic)\n\nSorry, it's only going to get harder from here...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 30 Matches (Classic)\n\nSorry, it's only going to get harder from here...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1312,7 +1312,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_50_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 50 Matches (Classic)\n\nI knew it. When I saw you 20 or so matches ago, I knew you had something special.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 50 Matches (Classic)\n\nI knew it. When I saw you 20 or so matches ago, I knew you had something special.", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1324,7 +1324,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_60_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 60 Matches (Classic)\n\nYou should be feeling good about yourself. Classic is no walk in the park. Keep it up!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 60 Matches (Classic)\n\nYou should be feeling good about yourself. Classic is no walk in the park. Keep it up!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1336,7 +1336,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_70_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 70 Matches (Classic)\n\nWhew. Give your thumbs the rest of the week off!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 70 Matches (Classic)\n\nWhew. Give your thumbs the rest of the week off!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1348,7 +1348,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_80_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 80 Matches (Classic)\n\nLet's take a moment to remember when you thought the first 20 matches were hard...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 80 Matches (Classic)\n\nLet's take a moment to remember when you thought the first 20 matches were hard...", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1360,7 +1360,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(reach_match_90_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Reach 90 Matches (Classic)\n\nMan, we're running out of achievements for you!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Reach 90 Matches (Classic)\n\nMan, we're running out of achievements for you!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1372,7 +1372,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(no_bonus_items_used_first_50_matches_classic, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("No Assistance Necessary (Classic): Get to 50 Matches in Classic Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("No Assistance Necessary (Classic): Get to 50 Matches in Classic Without Using Bonus Items\n\nImpressive. That kind of restraint doesn't go unnoticed!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;
@@ -1385,8 +1385,8 @@ bool Classic::CheckForAchievements()
 			gameData->setBoolForKey(reach_match_100_classic, true);
             achievementsUnlocked++;
             achievementsUnlocked++; //Need extra one for second page of text
-            achievementsText.push_back(nrgText::create("Mastered Classic: Reach 100 Matches\n\nCongratulations! You've completed 100 Classic Matches! You've officially been classically trained in the art of Tap 3!", "fonts/POE.ttf", achievementTextSize - 2, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
-            achievementsText.push_back(nrgText::create("Mastered Classic: Reach 100 Matches\n\nThank you soooo-oooo much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+            achievementsText.push_back(nrgText::create("Mastered Classic: Reach 100 Matches\n\nCongratulations! You've completed 100 Classic Matches! You've officially been classically trained in the art of Tap 3!", "fonts/POE.ttf", achievementTextSize - 2, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
+            achievementsText.push_back(nrgText::create("Mastered Classic: Reach 100 Matches\n\nThank you soooo-oooo much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
         }
         else
             earnedAllAchievements = false;
@@ -1399,7 +1399,7 @@ bool Classic::CheckForAchievements()
 		{
 			gameData->setBoolForKey(earned_all_achievements, true);
 			achievementsUnlocked++;
-			achievementsText.push_back(nrgText::create("Tap 3 Platinum Trophy: You've Earned Every Achievement!\n\nCongratulations! You're in a league of your own! Thank you so much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color4B::WHITE, cocos2d::TextHAlignment::CENTER));
+			achievementsText.push_back(nrgText::create("Tap 3 Platinum Trophy: You've Earned Every Achievement!\n\nCongratulations! You're in a league of your own! Thank you so much for enjoying Tap 3!!!", "fonts/POE.ttf", achievementTextSize - 1, baseTile->GetWidth() - 10, 0, 0, cocos2d::Color3B::WHITE, cocos2d::TextHAlignment::CENTER));
 		}
 		else
 			earnedAllAchievements = false;

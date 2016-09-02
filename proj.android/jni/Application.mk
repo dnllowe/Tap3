@@ -14,5 +14,5 @@ else
 APP_CPPFLAGS += -DNDEBUG
 APP_OPTIM := release
 endif
-APP_PLATFORM := android-19
+APP_PLATFORM := android-16
 APP_ABI := armeabi armeabi-v7a x86

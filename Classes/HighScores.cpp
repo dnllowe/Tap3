@@ -73,7 +73,7 @@ bool HighScores::init()
     }
     
     //4x3
-    else if (screenRatio >= 1.32)
+    else if (screenRatio >= 1.32 || screenRatio >= 1.0)
     {
         textSizeShrink = 1;
     }
@@ -107,7 +107,7 @@ bool HighScores::init()
 		tileTextSize = 16;
 
 	//4x3
-	else if (screenRatio >= 1.32)
+	else if (screenRatio >= 1.32 || screenRatio >= 1.0)
 		tileTextSize = 18;
 
 	backButton = nrgButton::create("back_button.png", "back_button_pressed.png", false);
@@ -169,27 +169,27 @@ bool HighScores::init()
 	nrgFunctions::ResizeForDevice(matchTile);
 	nrgFunctions::ResizeForDevice(achievementsTile);
 
-	classicScoreText = nrgText::create("Best Classic Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	classicMatchText = nrgText::create("Best Classic Match", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	countdownScoreText = nrgText::create("Best Countdown Score", "fonts/POE.ttf", tileTextSize - textSizeShrink, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	countdownMatchText = nrgText::create("Best Countdown Match", "fonts/POE.ttf", tileTextSize - textSizeShrink, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	memoryScoreText = nrgText::create("Best Memory Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	memoryMatchText = nrgText::create("Best Memory Match", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	practiceScoreText = nrgText::create("Best 100 Matches Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	scoreText = nrgText::create("Total Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	matchText = nrgText::create("Total Matches", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
-	achievementsText = nrgText::create("Achievements Unlocked", "fonts/POE.ttf", tileTextSize - textSizeShrink, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color4B::WHITE);
+	classicScoreText = nrgText::create("Best Classic Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	classicMatchText = nrgText::create("Best Classic Match", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	countdownScoreText = nrgText::create("Best Countdown Score", "fonts/POE.ttf", tileTextSize - textSizeShrink, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	countdownMatchText = nrgText::create("Best Countdown Match", "fonts/POE.ttf", tileTextSize - textSizeShrink, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	memoryScoreText = nrgText::create("Best Memory Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	memoryMatchText = nrgText::create("Best Memory Match", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	practiceScoreText = nrgText::create("Best 100 Matches Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	scoreText = nrgText::create("Total Score", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	matchText = nrgText::create("Total Matches", "fonts/POE.ttf", tileTextSize, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
+	achievementsText = nrgText::create("Achievements Unlocked", "fonts/POE.ttf", tileTextSize - textSizeShrink, classicScoreTile->GetWidth() * 0.9, 0, 0, cocos2d::Color3B::WHITE);
 
-	classicScoreTile->LinkWithText(classicScoreText, cocos2d::Color4B::YELLOW);
-	classicMatchTile->LinkWithText(classicMatchText, cocos2d::Color4B::YELLOW);
-	countdownScoreTile->LinkWithText(countdownScoreText, cocos2d::Color4B::YELLOW);
-	countdownMatchTile->LinkWithText(countdownMatchText, cocos2d::Color4B::YELLOW);
-	memoryScoreTile->LinkWithText(memoryScoreText, cocos2d::Color4B::YELLOW);
-	memoryMatchTile->LinkWithText(memoryMatchText, cocos2d::Color4B::YELLOW);
-	practiceScoreTile->LinkWithText(practiceScoreText, cocos2d::Color4B::YELLOW);
-	scoreTile->LinkWithText(scoreText, cocos2d::Color4B::YELLOW);
-	matchTile->LinkWithText(matchText, cocos2d::Color4B::YELLOW);
-	achievementsTile->LinkWithText(achievementsText, cocos2d::Color4B::YELLOW);
+	classicScoreTile->LinkWithText(classicScoreText, cocos2d::Color3B::YELLOW);
+	classicMatchTile->LinkWithText(classicMatchText, cocos2d::Color3B::YELLOW);
+	countdownScoreTile->LinkWithText(countdownScoreText, cocos2d::Color3B::YELLOW);
+	countdownMatchTile->LinkWithText(countdownMatchText, cocos2d::Color3B::YELLOW);
+	memoryScoreTile->LinkWithText(memoryScoreText, cocos2d::Color3B::YELLOW);
+	memoryMatchTile->LinkWithText(memoryMatchText, cocos2d::Color3B::YELLOW);
+	practiceScoreTile->LinkWithText(practiceScoreText, cocos2d::Color3B::YELLOW);
+	scoreTile->LinkWithText(scoreText, cocos2d::Color3B::YELLOW);
+	matchTile->LinkWithText(matchText, cocos2d::Color3B::YELLOW);
+	achievementsTile->LinkWithText(achievementsText, cocos2d::Color3B::YELLOW);
 
 	addChild(classicScoreText);
 	addChild(classicMatchText);
@@ -334,13 +334,13 @@ void HighScores::update(float dt)
 void HighScores::onEnter()
 {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    audio->SetMusicVolume(0.35);
+    audio->SetMusicVolume(0.5);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.05);
+    audio->SetMusicVolume(Game::GetiOSMinVolumeBG());
 #endif
-    
+
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	sdkbox::PluginAdMob::hide("home");
     sdkbox::PluginSdkboxPlay::setListener(this);
@@ -358,9 +358,9 @@ void HighScores::onExit()
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    audio->SetMusicVolume(0.10);
+    audio->SetMusicVolume(Game::GetiOSMaxVolumeBG());
 #endif
-    
+
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     sdkbox::PluginSdkboxPlay::removeListener();
 #endif
