@@ -1,0 +1,30 @@
+[SUBJECT]
+Tap 3 Tiles September 29th Release
+
+[BODY]
+Hi, [NAME]. If I could borrow 5 minutes of your time, I'd like you to consider including my latest mobile game to be featured in the App Store for Puzzle - Match games. 
+
+Tap 3 Tiles is a cleanly-designed, intuitive matching game with focus and fast reflexes at the heart of its challenge. It's a single tap game. No complex controls, but it is far from easy. I searched the app store for an idea as simple as this, and when I didn't find it, I knew I had to make the game.
+
+You can view the trailer / app preview video here:
+https://youtu.be/hkt64WxP5zU
+
+I'm an indie developer, so I designed all the art, sound, and gameplay for Tap 3.
+
+Details:
+Territories Available: Intended for a World Wide audience
+iOS Device Target: iPhone and iPad (iOS 6.0+)
+Product Title: Tap 3 Tiles
+Publisher Name: Out of Orbit Games
+Apple App Id: 1129999627
+Desired Live Date: September 29th 2016 (already approved by Apple)
+Languages Supported: EN
+Price: Free
+App Preview: Yes
+Game Center: Yes (65 achievements and 9 leaderboards)
+
+Thanks again for your time, [NAME]! Have a great rest of the week.
+
+Daniel
+
+
